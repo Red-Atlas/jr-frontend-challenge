@@ -1,5 +1,6 @@
-import LoadingComponent from "../components/ui/LoadingComponent";
-import RedAtlasBrand from "../assets/logo-red-atlas.png";
+
+import RedAtlasBrand from "../../assets/logo-red-atlas.png";
+import LoadingComponent from "./LoadingComponent";
 
 const LoadingPage = () => {
   return (
