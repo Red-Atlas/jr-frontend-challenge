@@ -24,7 +24,6 @@ const Root = () => {
     filterPropertiesByTitle,
     filterPropertiesByAddress,
     propertiesByTitle,
-    allProperties,
     propertiesByAddress,
   } = useProperties();
   const { mapDiv } = useMap(properties.slice(0, 10), loading);
@@ -44,7 +43,7 @@ const Root = () => {
   return (
     <main>
       <div className="lg:m-5 relative">
-        {allProperties.length > 0 ? (
+        {properties.length > 0 ? (
           <div>
             <FilterInput
               filter={filter}
@@ -69,7 +68,7 @@ const Root = () => {
         pagination={pagination}
         handlePrevPage={handlePrevPage}
       />
-      {mapDiv && properties.length > 0 && (
+      {mapDiv && (
         <div
           ref={mapDiv}
           className="h-screen w-full fixed top-0 left-0 -z-10"
