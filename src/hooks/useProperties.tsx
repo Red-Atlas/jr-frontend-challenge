@@ -59,6 +59,15 @@ const useProperties = () => {
     })();
   }, []);
 
+  const getPropertyById = async (id: string) => {
+    try {
+      const data = await apiService.get<IProperty>(`properties/${id}`);
+      return data;
+    } catch {
+      notificationService.error("No se pudo cargar la propiedad");
+    }
+  };
+
   const filterPropertiesByAddress = (address: string) => {
     const filteredProperties = allProperties
       .filter((property) => property.address.includes(address))
@@ -103,6 +112,7 @@ const useProperties = () => {
     handlePrevPage,
     pagination,
     allProperties,
+    getPropertyById,
   };
 };
 
