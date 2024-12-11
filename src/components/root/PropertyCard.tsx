@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { IProperty } from "../../interface/IProperty";
 
 interface PropertyCardProps {
@@ -5,10 +6,13 @@ interface PropertyCardProps {
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
+  const navigate = useNavigate();
+
   return (
     <div
       key={property.id}
       className="shadow-md transition ease-in-out duration-300 bg-gray-50 rounded-md mb-6 cursor-pointer w-[250px] hover:shadow-2xl flex flex-col"
+      onClick={() => navigate(`/${property.id}`)}
     >
       <div className="relative w-full h-44 rounded-t-lg">
         <img

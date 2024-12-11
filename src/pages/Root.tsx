@@ -36,6 +36,7 @@ const Root = () => {
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };
+  
 
   if (loading) {
     return <LoadingPage />;
@@ -52,9 +53,7 @@ const Root = () => {
               filterProperties={
                 isChecked ? filterPropertiesByTitle : filterPropertiesByAddress
               }
-              properties={
-                isChecked ? propertiesByTitle : propertiesByAddress
-              }
+              properties={isChecked ? propertiesByTitle : propertiesByAddress}
               isChecked={isChecked}
               handleToggle={handleToggle}
             />
