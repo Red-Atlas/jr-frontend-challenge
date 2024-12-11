@@ -8,6 +8,11 @@ interface Owner {
   contact: string;
 }
 
+export enum PropertyStatus {
+  RENT = "rent",
+  SALE = "sale",
+}
+
 export interface IProperty {
   id: string;
   title: string;
@@ -16,7 +21,7 @@ export interface IProperty {
   address: string;
   images: string[];
   type: string;
-  status: string;
+  status: PropertyStatus;
   isActive: boolean;
   price: number;
   area: number;
