@@ -5,10 +5,12 @@ import ModalRootContent from "../components/root/ModalRootContent";
 import useProperties from "../hooks/useProperties";
 import useMap from "../hooks/useMap";
 import LoadingPage from "../components/ui/LoadingPage";
+import PropertiesListWrapper from "../components/root/PropertiesListWrapper";
 
 const Root = () => {
   const [showModal, setShowModal] = useState(true);
-  const { loading, properties } = useProperties();
+  const { loading, properties, propertiesAmount, handleNextPage, pagination, handlePrevPage} =
+    useProperties();
   const { mapDiv } = useMap(properties, loading);
 
   const toggleModal = () => {
@@ -21,8 +23,18 @@ const Root = () => {
 
   return (
     <main>
+      <PropertiesListWrapper
+        propertiesAmount={propertiesAmount}
+        properties={properties}
+        handleNextPage={handleNextPage}
+        pagination={pagination}
+        handlePrevPage={handlePrevPage}
+      />
       {mapDiv && properties.length > 0 && (
-        <div ref={mapDiv} className="h-screen w-full fixed top-0 left-0"></div>
+        <div
+          ref={mapDiv}
+          className="h-screen w-full fixed top-0 left-0 -z-10"
+        ></div>
       )}
       {showModal && (
         <Modal>
