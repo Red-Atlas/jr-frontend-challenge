@@ -1,4 +1,5 @@
 import { IProperty } from "../../interface/IProperty";
+import ArrowIcon from "../ui/icons/ArrowIcon";
 import PropertyCard from "./PropertyCard";
 
 interface PropertiesListWrapperProps {
@@ -34,9 +35,9 @@ const PropertiesListWrapper = ({
           className="px-4 py-2 mx-2 bg-gray-200 rounded hover:bg-gray-300"
           disabled={pagination.page === 1}
         >
-          &lt;
+          <ArrowIcon className="fill-gray-950 w-6 h-6"/>
         </button>
-        <span className="px-4 py-2 mx-2 bg-gray-100 rounded">
+        <span className="px-4 py-2 mx-2 bg-gray-100 rounded font-semibold">
           {pagination.page} / {pagination.totalPages}
         </span>
         <button
@@ -44,17 +45,17 @@ const PropertiesListWrapper = ({
           className="px-4 py-2 mx-2 bg-gray-200 rounded hover:bg-gray-300"
           disabled={pagination.page === pagination.totalPages}
         >
-          &gt;
+          <ArrowIcon className="fill-gray-950 w-6 h-6 rotate-180"/>
         </button>
       </div>
 
-      {
+      {Array.isArray(properties) && (
         <div className="overflow-scroll h-full pb-24 flex flex-wrap flex-row justify-evenly">
-          {properties.map((property) => (
+          {properties?.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}
         </div>
-      }
+      )}
     </section>
   );
 };

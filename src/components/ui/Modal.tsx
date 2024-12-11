@@ -8,7 +8,7 @@ interface IModalProps {
 export default function Modal({ children, className }: IModalProps) {
   return (
     <section
-      className={`fixed z-50 top-0 h-full w-full  backdrop-blur-[.3em] flex justify-center items-center ${className}`}
+      className={`fixed z-50 top-0 h-full w-full  backdrop-blur-[.3em] flex justify-center items-center ${className} overflow-hidden`}
     >
       {children}
     </section>
