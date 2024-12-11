@@ -27,7 +27,7 @@ const Root = () => {
     allProperties,
     propertiesByAddress,
   } = useProperties();
-  const { mapDiv } = useMap(properties, loading);
+  const { mapDiv } = useMap(properties.slice(0, 10), loading);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -36,7 +36,6 @@ const Root = () => {
   const handleToggle = () => {
     setIsChecked(!isChecked);
   };
-  
 
   if (loading) {
     return <LoadingPage />;
@@ -65,7 +64,7 @@ const Root = () => {
 
       <PropertiesListWrapper
         propertiesAmount={propertiesAmount}
-        properties={properties}
+        properties={properties.slice(0, 10)}
         handleNextPage={handleNextPage}
         pagination={pagination}
         handlePrevPage={handlePrevPage}
