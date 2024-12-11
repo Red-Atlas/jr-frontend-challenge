@@ -12,6 +12,8 @@ import FilterInput from "../components/root/FilterInput";
 const Root = () => {
   const [showModal, setShowModal] = useState(true);
   const [filter, setFilter] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+
   const {
     loading,
     properties,
@@ -20,13 +22,19 @@ const Root = () => {
     pagination,
     handlePrevPage,
     filterPropertiesByTitle,
+    filterPropertiesByAddress,
     propertiesByTitle,
     allProperties,
+    propertiesByAddress,
   } = useProperties();
   const { mapDiv } = useMap(properties, loading);
 
   const toggleModal = () => {
     setShowModal(!showModal);
+  };
+
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
   };
 
   if (loading) {
@@ -35,14 +43,22 @@ const Root = () => {
 
   return (
     <main>
-      <div className="m-5 relative">
+      <div className="lg:m-5 relative">
         {allProperties.length > 0 ? (
-          <FilterInput
-            filter={filter}
-            setFilter={setFilter}
-            filterPropertiesByTitle={filterPropertiesByTitle}
-            propertiesByTitle={propertiesByTitle}
-          />
+          <div>
+            <FilterInput
+              filter={filter}
+              setFilter={setFilter}
+              filterProperties={
+                isChecked ? filterPropertiesByTitle : filterPropertiesByAddress
+              }
+              properties={
+                isChecked ? propertiesByTitle : propertiesByAddress
+              }
+              isChecked={isChecked}
+              handleToggle={handleToggle}
+            />
+          </div>
         ) : (
           <LoadingComponent className="w-14 h-14" />
         )}

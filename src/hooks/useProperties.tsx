@@ -60,9 +60,9 @@ const useProperties = () => {
   }, []);
 
   const filterPropertiesByAddress = (address: string) => {
-    const filteredProperties = allProperties.filter((property) =>
-      property.address.includes(address)
-    );
+    const filteredProperties = allProperties
+      .filter((property) => property.address.includes(address))
+      .slice(0, 5);
     setPropertiesByAddress(filteredProperties);
   };
 
@@ -102,7 +102,7 @@ const useProperties = () => {
     handleNextPage,
     handlePrevPage,
     pagination,
-    allProperties
+    allProperties,
   };
 };
 
