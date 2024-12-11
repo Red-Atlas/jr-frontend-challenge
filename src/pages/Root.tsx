@@ -6,11 +6,23 @@ import useProperties from "../hooks/useProperties";
 import useMap from "../hooks/useMap";
 import LoadingPage from "../components/ui/LoadingPage";
 import PropertiesListWrapper from "../components/root/PropertiesListWrapper";
+import LoadingComponent from "../components/ui/LoadingComponent";
+import FilterInput from "../components/root/FilterInput";
 
 const Root = () => {
   const [showModal, setShowModal] = useState(true);
-  const { loading, properties, propertiesAmount, handleNextPage, pagination, handlePrevPage} =
-    useProperties();
+  const [filter, setFilter] = useState("");
+  const {
+    loading,
+    properties,
+    propertiesAmount,
+    handleNextPage,
+    pagination,
+    handlePrevPage,
+    filterPropertiesByTitle,
+    propertiesByTitle,
+    allProperties,
+  } = useProperties();
   const { mapDiv } = useMap(properties, loading);
 
   const toggleModal = () => {
@@ -23,6 +35,19 @@ const Root = () => {
 
   return (
     <main>
+      <div className="m-5 relative">
+        {allProperties.length > 0 ? (
+          <FilterInput
+            filter={filter}
+            setFilter={setFilter}
+            filterPropertiesByTitle={filterPropertiesByTitle}
+            propertiesByTitle={propertiesByTitle}
+          />
+        ) : (
+          <LoadingComponent className="w-14 h-14" />
+        )}
+      </div>
+
       <PropertiesListWrapper
         propertiesAmount={propertiesAmount}
         properties={properties}

@@ -67,9 +67,9 @@ const useProperties = () => {
   };
 
   const filterPropertiesByTitle = (title: string) => {
-    const filteredProperties = allProperties.filter((property) =>
-      property.title.includes(title)
-    );
+    const filteredProperties = allProperties
+      .filter((property) => property.title.includes(title))
+      .slice(0, 5);
     setPropertiesByTitle(filteredProperties);
   };
 
@@ -102,6 +102,7 @@ const useProperties = () => {
     handleNextPage,
     handlePrevPage,
     pagination,
+    allProperties
   };
 };
 
