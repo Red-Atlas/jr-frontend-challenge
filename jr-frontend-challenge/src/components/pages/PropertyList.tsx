@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import Grid from "@mui/material/Grid2";
-import { Box, Button, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress, Container } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
 import { fetchProperties } from "../../store/propertiesSlice";
@@ -110,7 +110,7 @@ const PropertyList: React.FC = () => {
           <CircularProgress color="error" size="4rem" />
         </Box>
       ) : (
-        <>
+        <Container>
           <h1 className="atlas-title">Propiedades</h1>
           <Grid container justifyContent="center" alignItems="center">
             <Grid size={12}>
@@ -144,19 +144,21 @@ const PropertyList: React.FC = () => {
               </NavLink>
             </Grid>
           </Grid>
-          <Grid container spacing={2} sx={{ marginTop: 2 }}>
+          <Grid container spacing={2} sx={{ marginTop: 2 }} justifyContent="center">
             {filteredProperties.map((prop: Property) => (
-              <Grid key={prop.id} size={{ xs: 12, sm: 6, md: 4, xl: 3 }}>
+              <Grid key={prop.id} size={{ xs: 12, sm: 6, md: 4, xl: 4 }}>
                 <PropertiesCard property={prop} />
               </Grid>
             ))}
           </Grid>
-          <PaginationOutlined
-            count={Math.ceil(findedProperties.length / propertiesPerPage)}
-            page={currentPage}
-            onChange={handlePageChange}
-          />
-        </>
+          <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+            <PaginationOutlined
+              count={Math.ceil(findedProperties.length / propertiesPerPage)}
+              page={currentPage}
+              onChange={handlePageChange}
+            />
+          </Box>
+        </Container>
       )}
     </>
   );
