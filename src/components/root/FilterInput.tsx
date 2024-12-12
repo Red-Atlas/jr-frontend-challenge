@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import RedAtlasBrand from "../../assets/logo-red-atlas.png";
 import { IProperty } from "../../interface/IProperty";
 
@@ -18,6 +19,9 @@ const FilterInput = ({
   isChecked,
   handleToggle,
 }: FilterInputProps) => {
+
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="w-full max-w-xl flex flex-row p-3 bg-white gap-4 rounded-md">
@@ -26,7 +30,7 @@ const FilterInput = ({
           type="text"
           className="w-full h-8 outline-none text-lg"
           placeholder={`${
-            isChecked ? "Busca por titulo" : "Busca por direccion"
+            isChecked ? "Busca por titulo ..." : "Busca por direccion ..."
           }`}
           value={filter}
           onChange={(e) => {
@@ -50,11 +54,12 @@ const FilterInput = ({
       </div>
 
       {properties.length > 0 && filter.length > 0 && (
-        <div className="absolute z-10 w-full max-w-xl bg-white rounded-md mt-2">
+        <div className="absolute z-10  w-full max-w-xl bg-white rounded-md top-16 left-0" >
           {properties.map((property) => (
             <div
               key={property.id}
               className="p-2 hover:bg-gray-100 cursor-pointer m-2 flex flex-col"
+              onClick={() => navigate(`/${property.id}`)}
             >
               <span>
                 {property.title}
