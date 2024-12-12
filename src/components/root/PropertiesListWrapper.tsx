@@ -44,7 +44,7 @@ const PropertiesListWrapper = ({
             <FilledArrow
               className={`${
                 propertiesOrder ? "fill-gray-950" : "fill-gray-200"
-              } fill-gray-950 w-8`}
+              } w-8`}
             />
             <FilledArrow
               className={`${

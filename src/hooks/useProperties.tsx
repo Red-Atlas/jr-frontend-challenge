@@ -3,6 +3,8 @@ import { IProperty, PropertyStatus } from "../interface/IProperty";
 import propertiesData from "../../properties.json";
 import LZString from "lz-string";
 import { ICreateProperty } from "../interface/ICreateProperty";
+import { notificationService } from "../services/notification.service";
+import { useNavigate } from "react-router-dom";
 
 const useProperties = () => {
   const [propertiesByAddress, setPropertiesByAddress] = useState<IProperty[]>(
@@ -17,6 +19,7 @@ const useProperties = () => {
     limit: 10,
     totalPages: 0,
   });
+  const navigate = useNavigate();
 
   let properties: IProperty[] = [];
 
@@ -93,7 +96,9 @@ const useProperties = () => {
     return sortedProperties;
   };
 
-  const paginatedProperties = getPropertiesSortedByPrice(propertiesOrder)?.slice(
+  const paginatedProperties = getPropertiesSortedByPrice(
+    propertiesOrder
+  )?.slice(
     (pagination.page - 1) * pagination.limit,
     pagination.page * pagination.limit
   );
@@ -123,6 +128,28 @@ const useProperties = () => {
     localStorage.setItem("properties", compressedProperties);
   };
 
+  const updateProperty = (updatedProperty: Partial<IProperty>) => {
+    const propertyIndex = properties.findIndex(
+      (property) => property.id === updatedProperty.id
+    );
+    if (propertyIndex !== -1) {
+      const updatedProperties = [...properties];
+      updatedProperties[propertyIndex] = {
+        ...updatedProperties[propertyIndex],
+        ...updatedProperty,
+      };
+      properties = updatedProperties;
+      const compressedProperties = LZString.compress(
+        JSON.stringify(updatedProperties)
+      );
+      localStorage.setItem("properties", compressedProperties);
+      notificationService.success("Propiedad Actualizada exitosamente");
+      navigate("/");
+    } else {
+      notificationService.error(`No se encontró la propiedad con el id: ${updatedProperty.id}`);
+    }
+  };
+
   return {
     properties: paginatedProperties,
     loading,
@@ -138,7 +165,8 @@ const useProperties = () => {
     addProperty,
     setPropertiesAmount,
     setPropertiesOrder,
-    propertiesOrder
+    propertiesOrder,
+    updateProperty,
   };
 };
 

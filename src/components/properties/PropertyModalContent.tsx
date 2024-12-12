@@ -1,15 +1,18 @@
 import { useNavigate } from "react-router-dom";
 import { IProperty, PropertyStatus } from "../../interface/IProperty";
 import ArrowIcon from "../ui/icons/ArrowIcon";
-import NoImg from '../../assets/not-img.jpg';
+import NoImg from "../../assets/not-img.jpg";
 
 interface IPropertyModalContentProps {
   property: IProperty | null;
+  handleEdit: () => void;
 }
 
-const PropertyModalContent = ({ property }: IPropertyModalContentProps) => {
+const PropertyModalContent = ({
+  property,
+  handleEdit,
+}: IPropertyModalContentProps) => {
   const navigate = useNavigate();
-
 
   return (
     <section className="bg-white w-full max-w-3xl flex flex-col rounded-lg p-5">
@@ -30,18 +33,18 @@ const PropertyModalContent = ({ property }: IPropertyModalContentProps) => {
       </div>
       <div className="w-full">
         <div className="w-full">
-          {
-          property?.images.length ? (
-          property?.images.map((image, index) => (
-            <img
-              key={index}
-              src={image}
-              alt={property?.title}
-              width={340}
-              height={320}
-              className="object-cover w-full h-[300px] rounded-lg"
-            />
-          ))): (
+          {property?.images.length ? (
+            property?.images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={property?.title}
+                width={340}
+                height={320}
+                className="object-cover w-full h-[300px] rounded-lg"
+              />
+            ))
+          ) : (
             <img
               src={NoImg}
               alt={property?.title}
@@ -87,6 +90,9 @@ const PropertyModalContent = ({ property }: IPropertyModalContentProps) => {
             <span className="text-gray-500">{property?.description}</span>
           </div>
         </div>
+        <button className="mt-4 w-full bg-secondary p-2 rounded-lg" onClick={handleEdit}>
+          <span className="text-white">Editar</span>
+        </button>
       </div>
     </section>
   );

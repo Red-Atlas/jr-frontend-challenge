@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { IProperty } from "../interface/IProperty";
 import LoadingPage from "../components/ui/LoadingPage";
 import PropertyModalContent from "../components/properties/PropertyModalContent";
+import EditPropertyModalContent from "../components/properties/EditPropertyModalContent";
 
 const Property = () => {
   const { getPropertyById } = useProperties();
   const [property, setProperty] = useState<IProperty | null>(null);
   const params = useParams();
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     if (params.id) {
@@ -19,13 +21,21 @@ const Property = () => {
     }
   }, [params.id]);
 
+  const handleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
   return (
     <Modal>
       {!property ? (
         <LoadingPage />
       ) : (
         <div className="w-full flex justify-center items-center max-h-[750px] overflow-hidden">
-          <PropertyModalContent property={property} />
+          {isEditing ? (
+            <EditPropertyModalContent property={property} handleEdit={handleEdit}/>
+          ) : (
+            <PropertyModalContent property={property} handleEdit={handleEdit} />
+          )}
         </div>
       )}
     </Modal>
