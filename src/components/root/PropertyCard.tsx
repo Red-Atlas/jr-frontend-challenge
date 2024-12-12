@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { IProperty } from "../../interface/IProperty";
+import NotImg from '../../assets/not-img.jpg';
 
 interface PropertyCardProps {
   property: IProperty;
@@ -15,11 +16,19 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
       onClick={() => navigate(`/${property.id}`)}
     >
       <div className="relative w-full h-44 rounded-t-lg">
-        <img
-          src={property.images[0]}
-          alt={property.title}
-          className="w-full h-full object-cover object-center rounded-t-lg"
-        />
+        {property.images.length ? (
+          <img
+            src={property.images[0]}
+            alt={property.title}
+            className="w-full h-full object-cover object-center rounded-t-lg"
+          />
+        ) : (
+          <img
+            src={NotImg}
+            alt={property.title}
+            className="w-full h-full object-cover object-center rounded-t-lg"
+          />
+        )}
         <div>
           <p className="text-white text-sm font-bold absolute top-3 right-3 bg-secondary px-2 py-1 rounded-2xl">
             {property.price.toLocaleString("en-US", {

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { IProperty, PropertyStatus } from "../../interface/IProperty";
 import ArrowIcon from "../ui/icons/ArrowIcon";
+import NoImg from '../../assets/not-img.jpg';
 
 interface IPropertyModalContentProps {
   property: IProperty | null;
@@ -29,7 +30,9 @@ const PropertyModalContent = ({ property }: IPropertyModalContentProps) => {
       </div>
       <div className="w-full">
         <div className="w-full">
-          {property?.images.map((image, index) => (
+          {
+          property?.images.length ? (
+          property?.images.map((image, index) => (
             <img
               key={index}
               src={image}
@@ -38,7 +41,15 @@ const PropertyModalContent = ({ property }: IPropertyModalContentProps) => {
               height={320}
               className="object-cover w-full h-[300px] rounded-lg"
             />
-          ))}
+          ))): (
+            <img
+              src={NoImg}
+              alt={property?.title}
+              width={340}
+              height={320}
+              className="object-cover w-full h-[300px] rounded-lg"
+            />
+          )}
         </div>
         <div>
           <div className="flex flex-row items-start justify-between py-4">
