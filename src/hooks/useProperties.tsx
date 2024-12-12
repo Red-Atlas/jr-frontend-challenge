@@ -9,6 +9,7 @@ const useProperties = () => {
     []
   );
   const [propertiesByTitle, setPropertiesByTitle] = useState<IProperty[]>([]);
+  const [propertiesOrder, setPropertiesOrder] = useState(false);
   const [propertiesAmount, setPropertiesAmount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({
@@ -31,18 +32,18 @@ const useProperties = () => {
   }, [properties]);
 
   useEffect(() => {
-      setTimeout(() => {
-        const compressedProperties = LZString.compress(
-          JSON.stringify(properties)
-        );
-        localStorage.setItem("properties", compressedProperties);
-        setPagination({
-          ...pagination,
-          totalPages: Math.ceil(properties.length / pagination.limit),
-        });
-        setPropertiesAmount(properties.length);
-        setLoading(false);
-      }, 1500);
+    setTimeout(() => {
+      const compressedProperties = LZString.compress(
+        JSON.stringify(properties)
+      );
+      localStorage.setItem("properties", compressedProperties);
+      setPagination({
+        ...pagination,
+        totalPages: Math.ceil(properties.length / pagination.limit),
+      });
+      setPropertiesAmount(properties.length);
+      setLoading(false);
+    }, 1500);
   }, []);
 
   const getPropertyById = async (id: string) => {
@@ -81,7 +82,18 @@ const useProperties = () => {
     }
   };
 
-  const paginatedProperties = properties.slice(
+  const getPropertiesSortedByPrice = (order: boolean) => {
+    const sortedProperties = [...properties].sort((a, b) => {
+      if (order === false) {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+    return sortedProperties;
+  };
+
+  const paginatedProperties = getPropertiesSortedByPrice(propertiesOrder)?.slice(
     (pagination.page - 1) * pagination.limit,
     pagination.page * pagination.limit
   );
@@ -124,7 +136,9 @@ const useProperties = () => {
     pagination,
     getPropertyById,
     addProperty,
-    setPropertiesAmount
+    setPropertiesAmount,
+    setPropertiesOrder,
+    propertiesOrder
   };
 };
 

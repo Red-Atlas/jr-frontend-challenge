@@ -26,6 +26,8 @@ const Root = () => {
     filterPropertiesByAddress,
     propertiesByTitle,
     propertiesByAddress,
+    setPropertiesOrder,
+    propertiesOrder,
   } = useProperties();
   const { mapDiv } = useMap(properties.slice(0, 10));
 
@@ -35,6 +37,10 @@ const Root = () => {
 
   const handleToggle = () => {
     setIsChecked(!isChecked);
+  };
+
+  const handleChangeOrder = () => {
+    setPropertiesOrder(!propertiesOrder);
   };
 
   if (loading) {
@@ -69,6 +75,8 @@ const Root = () => {
         handleNextPage={handleNextPage}
         pagination={pagination}
         handlePrevPage={handlePrevPage}
+        handleChangeOrder={handleChangeOrder}
+        propertiesOrder={propertiesOrder}
       />
       {mapDiv && (
         <div
