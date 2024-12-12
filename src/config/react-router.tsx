@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../pages/Root";
 import Property from "../pages/Property";
+import CreateProperty from "../pages/CreateProperty";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +11,12 @@ const router = createBrowserRouter([
       {
         path: ":id",
         element: <Property />,
-      }
-    ]
+      },
+      {
+        path: "create",
+        element: <CreateProperty />,
+      },
+    ],
   },
 ]);
 

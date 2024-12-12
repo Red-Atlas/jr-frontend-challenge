@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Modal from "../components/ui/Modal";
 import ModalRootContent from "../components/root/ModalRootContent";
 import useProperties from "../hooks/useProperties";
 import useMap from "../hooks/useMap";
 import LoadingPage from "../components/ui/LoadingPage";
 import PropertiesListWrapper from "../components/root/PropertiesListWrapper";
-import LoadingComponent from "../components/ui/LoadingComponent";
 import FilterInput from "../components/root/FilterInput";
+import AddIcon from "../components/ui/icons/AddIcon";
 
 const Root = () => {
   const [showModal, setShowModal] = useState(true);
   const [filter, setFilter] = useState("");
   const [isChecked, setIsChecked] = useState(false);
+  const navigate = useNavigate();
 
   const {
     loading,
@@ -26,7 +27,7 @@ const Root = () => {
     propertiesByTitle,
     propertiesByAddress,
   } = useProperties();
-  const { mapDiv } = useMap(properties.slice(0, 10), loading);
+  const { mapDiv } = useMap(properties.slice(0, 10));
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -42,23 +43,21 @@ const Root = () => {
 
   return (
     <main>
-      <div className="lg:m-5 relative">
-        {properties.length > 0 ? (
-          <div>
-            <FilterInput
-              filter={filter}
-              setFilter={setFilter}
-              filterProperties={
-                isChecked ? filterPropertiesByTitle : filterPropertiesByAddress
-              }
-              properties={isChecked ? propertiesByTitle : propertiesByAddress}
-              isChecked={isChecked}
-              handleToggle={handleToggle}
-            />
-          </div>
-        ) : (
-          <LoadingComponent className="w-14 h-14" />
-        )}
+      <div className="lg:m-5 mt-2 ml-2 relative flex flex-row justify-between">
+        <FilterInput
+          filter={filter}
+          setFilter={setFilter}
+          filterProperties={
+            isChecked ? filterPropertiesByTitle : filterPropertiesByAddress
+          }
+          properties={isChecked ? propertiesByTitle : propertiesByAddress}
+          isChecked={isChecked}
+          handleToggle={handleToggle}
+        />
+
+        <button className="px-4 py-2 mx-2 bg-white rounded hover:bg-gray-100" onClick={() => navigate('/create')}>
+          <AddIcon className="fill-gray-950 w-6 h-6 rotate-180" />
+        </button>
       </div>
 
       <PropertiesListWrapper
