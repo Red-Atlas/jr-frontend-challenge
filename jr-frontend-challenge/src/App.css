@@ -1,8 +1,24 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  max-width: 100%;
+  /* margin: 0 auto; */
   text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.atlas-logo {
+  width: 250px;
+  height: 60px;
+}
+
+.atlas-title {
+  color: #d31216;
+  font-size: 2.5em;
+  line-height: 1.1;
 }
 
 .logo {
