@@ -1,4 +1,4 @@
-import { Field, Formik, Form } from "formik";
+import { Field, Formik, Form, ErrorMessage } from "formik";
 import Modal from "../components/ui/Modal";
 import { useNavigate } from "react-router-dom";
 import CustomInput from "../components/ui/CustomInput";
@@ -12,7 +12,7 @@ import { notificationService } from "../services/notification.service";
 
 const CreateProperty = () => {
   const navigate = useNavigate();
-  const {addProperty} = useProperties();
+  const { addProperty, setPropertiesAmount } = useProperties();
 
   return (
     <Modal>
@@ -44,6 +44,7 @@ const CreateProperty = () => {
             onSubmit={(values) => {
               notificationService.success("Propiedad añadida exitosamente");
               addProperty(values);
+              setPropertiesAmount((prev) => prev + 1);
               navigate("/");
             }}
           >
@@ -58,16 +59,24 @@ const CreateProperty = () => {
                 placeholder="Dirección"
                 className="border-b border-primary"
               />
-              <Field
-                as="select"
-                id="status"
-                name="status"
-                className="border-b border-primary p-3 focus:outline-none"
-              >
-                <option value="" label="Selecciona estado" />
-                <option value={PropertyStatus.RENT} label="En Alquiler" />
-                <option value={PropertyStatus.SALE} label="En Venta" />
-              </Field>
+              <div className="w-full flex flex-col">
+                <Field
+                  as="select"
+                  id="status"
+                  name="status"
+                  className="border-b border-primary p-3 focus:outline-none"
+                >
+                  <option value="" label="Selecciona estado" />
+                  <option value={PropertyStatus.RENT} label="En Alquiler" />
+                  <option value={PropertyStatus.SALE} label="En Venta" />
+                </Field>
+                <ErrorMessage
+                  className="text-red-500 text-xs w-full"
+                  name='status'
+                  component="p"
+                />
+
+              </div>
               <CustomInput
                 id="type"
                 placeholder="Tipo"
@@ -83,7 +92,10 @@ const CreateProperty = () => {
                 placeholder="Descripción"
                 className="border-b border-primary"
               />
-              <button className="bg-primary text-white p-2 rounded mt-3 font-semibold" type="submit">
+              <button
+                className="bg-primary text-white p-2 rounded mt-3 font-semibold"
+                type="submit"
+              >
                 Agregar
               </button>
             </Form>

@@ -27,8 +27,11 @@ const useProperties = () => {
   }
 
   useEffect(() => {
+    setPropertiesAmount(properties.length);
+  }, [properties]);
+
+  useEffect(() => {
       setTimeout(() => {
-        setPropertiesAmount(properties.length);
         const compressedProperties = LZString.compress(
           JSON.stringify(properties)
         );
@@ -37,6 +40,7 @@ const useProperties = () => {
           ...pagination,
           totalPages: Math.ceil(properties.length / pagination.limit),
         });
+        setPropertiesAmount(properties.length);
         setLoading(false);
       }, 1500);
   }, []);
@@ -103,7 +107,6 @@ const useProperties = () => {
       status: newProperty.status as PropertyStatus,
     };
     properties.unshift(newPropertyWithId);
-    setPropertiesAmount(properties.length + 1);
     const compressedProperties = LZString.compress(JSON.stringify(properties));
     localStorage.setItem("properties", compressedProperties);
   };
@@ -121,6 +124,7 @@ const useProperties = () => {
     pagination,
     getPropertyById,
     addProperty,
+    setPropertiesAmount
   };
 };
 

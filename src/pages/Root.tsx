@@ -55,7 +55,10 @@ const Root = () => {
           handleToggle={handleToggle}
         />
 
-        <button className="px-4 py-2 mx-2 bg-white rounded hover:bg-gray-100" onClick={() => navigate('/create')}>
+        <button
+          className="px-4 py-2 mx-2 bg-white rounded hover:bg-gray-100"
+          onClick={() => navigate("/create")}
+        >
           <AddIcon className="fill-gray-950 w-6 h-6 rotate-180" />
         </button>
       </div>
