@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { IProperty } from "../interface/IProperty";
+import { IProperty, PropertyStatus } from "../interface/IProperty";
 import propertiesData from "../../properties.json";
-import { notificationService } from "../services/notification.service";
+import LZString from "lz-string";
+import { ICreateProperty } from "../interface/ICreateProperty";
 
 const useProperties = () => {
   const [propertiesByAddress, setPropertiesByAddress] = useState<IProperty[]>(
@@ -15,22 +16,29 @@ const useProperties = () => {
     limit: 10,
     totalPages: 0,
   });
-  const properties = propertiesData as IProperty[];
+
+  let properties: IProperty[] = [];
+
+  const storedProperties = localStorage.getItem("properties");
+  if (storedProperties) {
+    properties = JSON.parse(LZString.decompress(storedProperties) || "[]");
+  } else {
+    properties = propertiesData as IProperty[];
+  }
 
   useEffect(() => {
-    try {
       setTimeout(() => {
         setPropertiesAmount(properties.length);
+        const compressedProperties = LZString.compress(
+          JSON.stringify(properties)
+        );
+        localStorage.setItem("properties", compressedProperties);
         setPagination({
           ...pagination,
           totalPages: Math.ceil(properties.length / pagination.limit),
         });
         setLoading(false);
       }, 1500);
-    } catch {
-      notificationService.error("No se pudieron cargar las propiedades");
-      setLoading(false);
-    }
   }, []);
 
   const getPropertyById = async (id: string) => {
@@ -74,23 +82,31 @@ const useProperties = () => {
     pagination.page * pagination.limit
   );
 
-  // const addProperty = (newProperty: IProperty) => {
-  //   const updatedProperties = [...properties, newProperty];
-  //   setProperties(updatedProperties);
-  //   setPropertiesAmount(updatedProperties.length);
-
-  //   // Guardar en el archivo properties.json
-  //   const filePath = path.join(__dirname, '../../properties.json');
-  //   fs.writeFile(filePath, JSON.stringify(updatedProperties, null, 2), (err) => {
-  //     if (err) {
-  //       notificationService.error("No se pudo guardar la nueva propiedad");
-  //       console.error('Error al escribir el archivo:', err);
-  //     } else {
-  //       notificationService.success("Propiedad agregada exitosamente");
-  //       console.log('Archivo actualizado correctamente.');
-  //     }
-  //   });
-  // };
+  const addProperty = (newProperty: ICreateProperty) => {
+    const newPropertyWithId: IProperty = {
+      ...newProperty,
+      id: (properties.length + 1).toString(),
+      location: {
+        lat: 18.2208,
+        lng: -66.5901,
+      },
+      images: [],
+      isActive: true,
+      area: 120,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+      owner: {
+        contact: "787-123-4567",
+        name: "Juan Del Pueblo",
+      },
+      price: Number(newProperty.price),
+      status: newProperty.status as PropertyStatus,
+    };
+    properties.unshift(newPropertyWithId);
+    setPropertiesAmount(properties.length + 1);
+    const compressedProperties = LZString.compress(JSON.stringify(properties));
+    localStorage.setItem("properties", compressedProperties);
+  };
 
   return {
     properties: paginatedProperties,
@@ -104,6 +120,7 @@ const useProperties = () => {
     handlePrevPage,
     pagination,
     getPropertyById,
+    addProperty,
   };
 };
 
