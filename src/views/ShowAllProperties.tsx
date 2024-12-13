@@ -3,6 +3,8 @@ import { Property } from "../types/types";
 import { getAllProperties } from "../services/getAllProperties";
 import PropertyCard from "../components/cards/PropertyCard";
 import Input from "../components/forms/Input";
+import WorldMap from "../components/WorldMap";
+import "./ShowAllProperties.css";
 
 export const ShowAllProperties = () => {
   const [data, setData] = useState<Property[]>([]);
@@ -38,24 +40,29 @@ export const ShowAllProperties = () => {
   }, []);
 
   return (
-    <div className="flex flex-col mt-20">
-      <h2 className="font-bold text-4xl">Todas nuestras propiedades</h2>
+    <div className="flex flex-col  w-full main-content">
+      {/* <h2 className="font-bold text-4xl">Todas nuestras propiedades</h2> */}
 
-      <Input
+      <div className="map-container">
+        <WorldMap />
+      </div>
+
+      {/* <Input
         onChangeInput={handleSearchChange}
         placeholderText="Busca tu próxima propiedad"
-      />
-
-      <div className="mt-10 grid grid-cols-3 gap-6 w-full">
-        {showFilteredProperties.length > 0 ? (
-          showFilteredProperties
-            .slice(0, 9)
-            .map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))
-        ) : (
-          <p>No se encontraron propiedades que coincidan con tu búsqueda.</p>
-        )}
+      /> */}
+      <div className="flex items-end justify-end mt-20 ">
+        <div className="grid grid-cols-2 gap-6 h-[500px] w-[30%] bg-white ">
+          {showFilteredProperties.length > 0 ? (
+            showFilteredProperties
+              .slice(0, 9)
+              .map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))
+          ) : (
+            <p>No se encontraron propiedades que coincidan con tu búsqueda.</p>
+          )}
+        </div>
       </div>
     </div>
   );

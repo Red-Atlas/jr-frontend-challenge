@@ -14,7 +14,7 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
 
   const formattedDate = `${day}-${month}-${year}`;
   return (
-    <div className="w-[400px] h-[500px] rounded-xl flex flex-col items-start shadow-xl ">
+    <div className="w-[200px] h-[300px] rounded-xl flex flex-col items-start shadow-xl ">
       <img className="rounded-xl" src={propertieImage} alt="#property-image" />
       <div className="flex flex-col items-start p-2">
         <span className="font-bold">{property.title.slice(0, 40)}</span>

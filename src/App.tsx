@@ -1,5 +1,4 @@
 import { AppRoutes } from "./routes/AppRoutes";
-import { getAllProperties } from "./services/getAllProperties";
 
 export const App: React.FC = () => {
   return (
