@@ -11,7 +11,6 @@ import LocationFields from "../form/location_field/LocationField";
 import OwnerFields from "../form/owner_field/OwnerField";
 import FormHeader from "../form/header/FormHeader";
 import SelectInput from "../form/select_field/SelectInput";
-import { validateFormData } from "../../utils/formValidation";
 import { createProperty, updateProperty } from "../../store/actions";
 
 interface PropertyWithIndex extends Partial<Property> {
@@ -116,9 +115,7 @@ const PropertyForm: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const currentDate = new Date().toISOString();
-
-    validateFormData(formData);
-
+    
     if (id) {
       const updatedData = { ...formData, updatedAt: currentDate };
       dispatch(updateProperty(id, updatedData));
@@ -157,12 +154,14 @@ const PropertyForm: React.FC = () => {
             label="Título"
             value={formData.title}
             onChange={handleChange}
+            required
           />
           <FormField
             name="address"
             label="Dirección"
             value={formData.address}
             onChange={handleChange}
+            required
           />
           <FormField
             name="description"
@@ -182,6 +181,7 @@ const PropertyForm: React.FC = () => {
             menuItems={MenuItemsType}
             value={formData.type}
             onChange={(value) => handleSelectChange("type", value)}
+            required
           />
           <SelectInput
             text="Estado"
@@ -203,6 +203,7 @@ const PropertyForm: React.FC = () => {
             value={formData.price}
             onChange={handleChange}
             type="number"
+            required
           />
           <FormField
             name="area"

@@ -25,6 +25,11 @@ export const AppRoutes: Array<CustomRoute> = [
     element: () => <PropertyList />,
   },
   {
+    name: "properties",
+    path: "/properties",
+    element: () => <PropertyList />,
+  },
+  {
     name: "property_by_id",
     path: "/property/:id",
     element: () => <PropertyDetail />,
