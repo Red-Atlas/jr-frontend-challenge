@@ -1,5 +1,6 @@
 import { Property } from '../interfaces/property.interface';
 import {
+  LENGTH_PROPERTIES,
   FETCH_PROPERTIES,
   FETCH_PROPERTY_BY_ID,
   CREATE_PROPERTY,
@@ -9,6 +10,8 @@ import {
 
 export const propertiesReducer = (state: Property[] = [], action: any) => {
   switch (action.type) {
+    case LENGTH_PROPERTIES:
+      return action.payload;
     case FETCH_PROPERTIES:
       return action.payload;
     case CREATE_PROPERTY:

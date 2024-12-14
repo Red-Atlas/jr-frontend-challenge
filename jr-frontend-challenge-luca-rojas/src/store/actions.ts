@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import { Property } from '../interfaces/property.interface';
 import { showToast } from '../components/alert/Toast';
 
+export const LENGTH_PROPERTIES = 'LENGTH_PROPERTIES';
 export const FETCH_PROPERTIES = 'FETCH_PROPERTIES';
 export const FETCH_PROPERTY_BY_ID = 'FETCH_PROPERTY_BY_ID';
 export const CREATE_PROPERTY = 'CREATE_PROPERTY';
@@ -24,7 +25,6 @@ export const createProperty = (propertyData: Partial<Property>) => async (dispat
     dispatch({ type: CREATE_PROPERTY, payload: data });
     showToast("success", "Propiedad creada correctamente.")
   } catch (error) {
-    console.error('Error creating property:', error);
     showToast("error", "Ocurrió un error al intentar editar la propiedad.")
   }
 };
@@ -42,7 +42,6 @@ export const updateProperty = (id: string, propertyData: Partial<Property>) => a
     dispatch({ type: UPDATE_PROPERTY, payload: data });
     showToast("success", "Propiedad actualizada correctamente.")
   } catch (error) {
-    console.error('Error updating property:', error);
     showToast("error", "Ocurrió un error al intentar editar la propiedad.")
   }
 };
@@ -54,7 +53,6 @@ export const deleteProperty = (id: string) => async (dispatch: Dispatch) => {
     });
     dispatch({ type: DELETE_PROPERTY, payload: id });
   } catch (error) {
-    console.error('Error deleting property:', error);
+    showToast("error", `Error deleting property: ${error}`);
   }
 };
-

@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2";
 import { Box, Button, CircularProgress, Container } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-import { fetchProperties } from "../../store/propertiesSlice";
+import { fetchLengthProperties, fetchProperties } from "../../store/propertiesSlice";
 import { Property } from "../../interfaces/property.interface";
 import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
 import PropertiesCard from "../card/PropertiesCard";
@@ -27,7 +27,7 @@ const PropertyList: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [propertiesPerPage] = useState<number>(3);
   const dispatch = useAppDispatch();
-  const { items: properties, status } = useAppSelector(
+  const { items: properties, status, total } = useAppSelector(
     (state) => state.properties
   );
   const [findedProperties, setFindedProperties] = useState<Array<Property>>(
@@ -36,10 +36,15 @@ const PropertyList: React.FC = () => {
 
   useEffect(() => {
     if (status === false) {
-      dispatch(fetchProperties());
+      dispatch(fetchLengthProperties());
+      dispatch(fetchProperties({ page: currentPage, limit: propertiesPerPage }));
     }
     setFindedProperties(properties);
-  }, [status, dispatch]);
+  }, [status, dispatch, currentPage, propertiesPerPage]);
+  
+  useEffect(() => {
+    dispatch(fetchProperties({ page: currentPage, limit: propertiesPerPage }));
+  }, [currentPage])
 
   const handleFilterChange = (event: string) => {
     setFilter(event);
@@ -87,21 +92,14 @@ const PropertyList: React.FC = () => {
         break;
     }
 
-    const indexOfLastProperty = currentPage * propertiesPerPage;
-    const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
-    const currentPageProperties = sortedProperties.slice(
-      indexOfFirstProperty,
-      indexOfLastProperty
-    );
-
-    return currentPageProperties;
-  }, [filter, findedProperties, currentPage]);
+    return sortedProperties;
+  }, [filter, findedProperties]);
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
-    console.log(event.target)
+    console.log(event)
   };
-
+  
   return (
     <>
       {!status ? (
@@ -150,9 +148,9 @@ const PropertyList: React.FC = () => {
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ display: "flex", justifyContent: "flex-end", width: "100%" }}>
+          <Box sx={{ display: "flex", justifyContent: "center", width: "100%", marginTop: 5 }}>
             <PaginationOutlined
-              count={Math.ceil(findedProperties.length / propertiesPerPage)}
+              count={Math.ceil(total / propertiesPerPage)}
               page={currentPage}
               onChange={handlePageChange}
             />

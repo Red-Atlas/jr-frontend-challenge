@@ -3,30 +3,46 @@ import { Property } from '../interfaces/property.interface';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const fetchProperties = createAsyncThunk<Property[] /*{ page: number, limit: number }*/>(
+export const fetchLengthProperties = createAsyncThunk<Property[]>(
+  'properties/fetchLengthProperties',
+  async () => {
+    const response = await fetch(`${API_BASE_URL}`);
+  
+    if (!response.ok) {
+      throw new Error('Failed to fetch properties');
+    }
+
+    const data = await response.json();
+    return data.length;
+  }
+);
+
+export const fetchProperties = createAsyncThunk<Property[], { page: number, limit: number}>(
   'properties/fetchProperties',
-  async (/*{ page, limit }*/) => {
-    const response = await fetch(`${API_BASE_URL}`); //?page=${page}&limit=${limit}
+  async ({ page, limit }) => {
+    const response = await fetch(`${API_BASE_URL}?page=${page}&limit=${limit}`);
+  
     
     if (!response.ok) {
       throw new Error('Failed to fetch properties');
     }
 
     const data = await response.json();
+
     return data;
   }
 );
 
 interface PropertiesState {
   items: Property[];
-  totalCount: number;
+  total: number;
   status: true | false;
   error: string | null;
 }
 
 const initialState: PropertiesState = {
   items: [],
-  totalCount: 3,
+  total: 0,
   status: false,
   error: null,
 };
@@ -39,6 +55,9 @@ const propertiesSlice = createSlice({
     builder
       .addCase(fetchProperties.pending, (state) => {
         state.status = false;
+      })
+      .addCase(fetchLengthProperties.fulfilled, (state, action: PayloadAction<any>) => {
+        state.total = action.payload
       })
       .addCase(fetchProperties.fulfilled, (state, action: PayloadAction<Property[]>) => {
         state.status = true;
