@@ -1,0 +1,21 @@
+@import './variables.css';
+
+.footer {
+  background-color: #171717;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 0.7em;
+  font-family: var(--font-primary);
+  color: var(--secondary-color);
+}
+
+@media screen and (min-width: 375px) {
+  .text {
+    font-size: var(--text-size-small);
+  }
+}

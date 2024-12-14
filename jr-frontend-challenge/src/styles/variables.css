@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Avenir Next LT Pro';
+  src: url('./assets/fonts/avenirnextltpro-regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next LT Pro';
+  src: url('./assets/fonts/avenirnextltpro-bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next LT Pro';
+  src: url('./assets/fonts/avenirnextltpro-demi.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Avenir Next LT Pro';
+  src: url('./assets/fonts/avenirnextltpro-it.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+:root {
+  --primary-color: #d61214;
+  --secondary-color: #fafafa;
+  --text-color: #241e20;
+  --text-secondary-color: #d31216;
+  --border-color: #e0e0e0;
+  --error-color: #e53935;
+  --success-color: #43a047;
+
+  --font-primary: 'Avenir Next LT Pro', sans-serif;
+
+  --text-size-small: 0.875rem;
+  --text-size-base: 1rem;
+  --text-size-large: 1.25rem;
+  --text-size-title: 2rem;
+
+  --spacing-small: 0.5rem;
+  --spacing-base: 1rem;
+  --spacing-large: 2rem;
+
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  --border-radius: 4px;
+
+  --breakpoint-lg: 1440px;
+  --breakpoint-md: 1024px;
+  --breakpoint-sm: 520px;
+}

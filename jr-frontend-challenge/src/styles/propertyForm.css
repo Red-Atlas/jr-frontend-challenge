@@ -1,0 +1,184 @@
+.titleCreate {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  margin: 1.5rem;
+}
+
+.propertyForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.propertyForm h2 {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.propertyForm p {
+  color: red;
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+}
+
+.propertyForm input,
+.propertyForm select,
+.propertyForm textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.propertyForm input:focus,
+.propertyForm select:focus,
+.propertyForm textarea:focus {
+  border-color: #0066cc;
+  outline: none;
+}
+
+.propertyForm input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.propertyForm label {
+  font-weight: 600;
+  color: #333;
+}
+
+.propertyForm button {
+  padding: 1rem;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+}
+
+.propertyForm button:hover {
+  background-color: #a11517;
+}
+
+.propertyForm button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.propertyForm .inputGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyForm .inputGroup input {
+  margin-bottom: 0.5rem;
+}
+
+.propertyForm .inputGroup label {
+  margin-bottom: 0.3rem;
+}
+
+.propertyForm .locationGroup,
+.propertyForm .ownerGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.propertyForm .locationGroup input,
+.propertyForm .ownerGroup input {
+  flex: 1;
+}
+
+.propertyForm .locationGroup label,
+.propertyForm .ownerGroup label {
+  flex: 0 0 100%;
+  font-weight: 600;
+}
+
+.propertyForm .inputGroup,
+.propertyForm .locationGroup,
+.propertyForm .ownerGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.propertyForm .inputGroup,
+.propertyForm .locationGroup,
+.propertyForm .ownerGroup {
+  gap: 0.75rem;
+}
+
+.propertyForm .inputGroup input[type='file'] {
+  padding: 0.5rem;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  margin-right: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+input[type='checkbox']:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+label:hover {
+  color: #0056b3;
+}
+
+input[type='checkbox']:hover {
+  border-color: var(--primary-color);
+}
+
+.fieldset {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .propertyForm {
+    padding: 1.5rem;
+  }
+
+  .propertyForm .locationGroup,
+  .propertyForm .ownerGroup {
+    flex-direction: column;
+  }
+}
