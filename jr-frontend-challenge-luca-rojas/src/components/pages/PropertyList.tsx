@@ -10,7 +10,7 @@ import { useAppSelector, useAppDispatch } from "../../hooks/reduxHook";
 import PropertiesCard from "../card/PropertiesCard";
 import SearchInput from "../form/search_field/SearchInput";
 import SelectInput from "../form/select_field/SelectInput";
-import PaginationOutlined from "../pagination/Pagination"; // Import Pagination
+import PaginationOutlined from "../pagination/Pagination";
 
 const MenuItems = [
   { name: "Menor valor", value: "less_price" },
@@ -43,7 +43,7 @@ const PropertyList: React.FC = () => {
 
   const handleFilterChange = (event: string) => {
     setFilter(event);
-    setCurrentPage(1); // Reset to first page on filter change
+    setCurrentPage(1);
   };
 
   const onSearchProperty = () => {
@@ -52,7 +52,7 @@ const PropertyList: React.FC = () => {
         prop.title.includes(searchParam) || prop.address.includes(searchParam)
     );
     setFindedProperties(findedProperties);
-    setCurrentPage(1); // Reset to first page on search
+    setCurrentPage(1);
   };
 
   const filteredProperties = React.useMemo(() => {
@@ -87,7 +87,6 @@ const PropertyList: React.FC = () => {
         break;
     }
 
-    // Pagination: slice properties for the current page
     const indexOfLastProperty = currentPage * propertiesPerPage;
     const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
     const currentPageProperties = sortedProperties.slice(

@@ -3,25 +3,30 @@ import { Property } from '../interfaces/property.interface';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const fetchProperties = createAsyncThunk<Property[]>(
+export const fetchProperties = createAsyncThunk<Property[] /*{ page: number, limit: number }*/>(
   'properties/fetchProperties',
-  async () => {
-    const response = await fetch(`${API_BASE_URL}`);
+  async (/*{ page, limit }*/) => {
+    const response = await fetch(`${API_BASE_URL}`); //?page=${page}&limit=${limit}
+    
     if (!response.ok) {
       throw new Error('Failed to fetch properties');
     }
-    return response.json();
+
+    const data = await response.json();
+    return data;
   }
 );
 
 interface PropertiesState {
   items: Property[];
+  totalCount: number;
   status: true | false;
   error: string | null;
 }
 
 const initialState: PropertiesState = {
   items: [],
+  totalCount: 3,
   status: false,
   error: null,
 };

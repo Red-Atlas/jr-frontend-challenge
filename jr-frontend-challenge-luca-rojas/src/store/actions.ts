@@ -10,26 +10,6 @@ export const DELETE_PROPERTY = 'DELETE_PROPERTY';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export const fetchProperties = () => async (dispatch: Dispatch) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}`);
-    const data = await response.json();
-    dispatch({ type: FETCH_PROPERTIES, payload: data });
-  } catch (error) {
-    console.error('Error fetching properties:', error);
-  }
-};
-
-export const fetchPropertyById = (id: string) => async (dispatch: Dispatch) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/${id}`);
-    const data = await response.json();
-    dispatch({ type: FETCH_PROPERTY_BY_ID, payload: data });
-  } catch (error) {
-    console.error('Error fetching property:', error);
-  }
-};
-
 export const createProperty = (propertyData: Partial<Property>) => async (dispatch: Dispatch) => {
   try {
     const response = await fetch(`${API_BASE_URL}`, {
