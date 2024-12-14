@@ -1,0 +1,32 @@
+.contentError {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.titleError {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--error-color);
+  margin-bottom: 1em;
+}
+
+.textError {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1em;
+  color: var(--error-color);
+}
+
+.btnError {
+  padding: 0.5em 1em;
+  background-color: var(--error-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}

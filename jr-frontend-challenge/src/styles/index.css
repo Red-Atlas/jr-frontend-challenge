@@ -1,0 +1,14 @@
+@import './variables.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+}
+
+body {
+  background-color: var(--secondary-color);
+  max-width: 1440px;
+  margin: 0 auto;
+}

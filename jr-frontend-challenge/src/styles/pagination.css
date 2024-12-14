@@ -1,0 +1,48 @@
+@import './variables.css';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2em 0;
+}
+
+.currentPage,
+.notActive {
+  padding: 0.5em;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
+  -moz-border-radius: var(--border-radius);
+  -ms-border-radius: var(--border-radius);
+  -o-border-radius: var(--border-radius);
+  margin-right: 0.5em;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.currentPage {
+  background-color: var(--success-color);
+  color: var(--white-color);
+  border: 1px solid var(--success-color);
+}
+
+.notActive {
+  background-color: var(--white-color);
+  color: #5f5d5d;
+  border: 1px solid var(--border-color);
+}
+
+.dots {
+  margin: 0 10px;
+}
+
+@media screen and (min-width: 520px) {
+  .currentPage,
+  .notActive {
+    margin-right: 0.4em;
+  }
+}

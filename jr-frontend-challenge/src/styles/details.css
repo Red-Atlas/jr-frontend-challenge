@@ -1,0 +1,185 @@
+@import './variables.css';
+
+.contentDetail {
+  margin-top: 1.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.headerCardDetail {
+  display: flex;
+  justify-content: space-between;
+  align-items: self-start;
+  margin-bottom: 2rem;
+}
+
+.titleDetail {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.isActiveDetail {
+  font-size: 0.7em;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+.activeDetail {
+  color: var(--secondary-color);
+  background-color: var(--success-color);
+}
+
+.inactiveDetail {
+  color: #676767;
+  background-color: var(--border-color);
+}
+
+.imgDetail {
+  width: 100%;
+  border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
+  -moz-border-radius: var(--border-radius);
+  -ms-border-radius: var(--border-radius);
+  -o-border-radius: var(--border-radius);
+}
+
+.contentTagsDetail {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.tagDetail {
+  font-size: var(--text-size-small);
+  color: var(--text-color);
+  background-color: var(--border-color);
+  padding: 0.5rem 0.8rem;
+  margin-right: 0.8rem;
+  border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
+  -moz-border-radius: var(--border-radius);
+  -ms-border-radius: var(--border-radius);
+  -o-border-radius: var(--border-radius);
+}
+
+.descriptionDetail {
+  font-size: var(--text-size-small);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.addressDetail,
+.areaDetail {
+  font-size: var(--text-size-base);
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+  align-self: start;
+}
+
+.locationMap {
+  margin: 20px 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.contentdatesDetail {
+  width: 100%;
+}
+
+.contentdateDetail {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.textDetail {
+  font-size: var(--text-size-small);
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.createdAtDetail,
+.updatedAtDetail {
+  font-size: var(--text-size-small);
+  color: var(--text-color);
+  margin-left: 1em;
+}
+
+.contentOwnerDetail {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.textOwnerDetail {
+  font-size: 1.1em;
+  color: var(--text-color);
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.contentinfoOwner {
+  display: flex;
+  flex-direction: column;
+}
+
+.ownerNameDetail,
+.ownerContactDetail {
+  font-size: var(--text-size-base);
+  color: var(--text-secondary-color);
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.ownerContactDetail:hover {
+  color: #8e5050;
+  cursor: pointer;
+}
+
+.priceDetail {
+  color: var(--text-color);
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+@media screen and (min-width: 375px) {
+  .contentOwnerDetail {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .contentinfoOwner {
+    margin-left: 0.6em;
+  }
+}
+
+@media screen and (min-width: 520px) {
+  .imgDetail {
+    width: 80%;
+    align-self: center;
+  }
+
+  .contentOwnerDetail {
+    width: 25em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .locationMap {
+    width: 95%;
+    align-self: center;
+  }
+}

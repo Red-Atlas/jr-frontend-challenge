@@ -1,0 +1,107 @@
+@import './variables.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  padding: var(--spacing-small) 2em;
+}
+
+.h1 {
+  font-size: 1em;
+  font-weight: bold;
+  color: var(--text-secondary-color);
+}
+
+.backButton {
+  display: flex;
+  height: 3em;
+  width: 6em;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--border-color);
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+}
+
+.backButton:hover {
+  background-color: #f4c0c1;
+  color: var(--text-color);
+}
+
+.arrowIcon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.createBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-weight: bold;
+  border: none;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.createBtn:hover {
+  background-color: #a11517;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+.visibility {
+  display: none;
+}
+
+.editBtn {
+  background-color: var(--success-color);
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: var(--border-radius);
+  -webkit-border-radius: var(--border-radius);
+  -moz-border-radius: var(--border-radius);
+  -ms-border-radius: var(--border-radius);
+  -o-border-radius: var(--border-radius);
+}
+
+.editBtn:hover {
+  background-color: #45a049;
+}
+
+.icon {
+  font-size: 18px;
+}
+
+@media screen and (min-width: 520px) {
+  .backButton {
+    margin-left: 0.5em;
+  }
+
+  .visibility {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .backButton {
+    margin-left: 1em;
+  }
+}
