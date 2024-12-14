@@ -14,7 +14,8 @@ function Home() {
     const [searchInput, setSearchInput] = useState('');
     const [searchType, setSearchType] = useState<'title' | 'address'>('title');
     const [filteredData, setFilteredData] = useState<Property[]>([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); 
+    const [sortOrder, setSortOrder] = useState<string>(''); 
     const totalRecords = 10000;
     const totalPages = Math.ceil(totalRecords / resultsPerPage);
 
@@ -23,32 +24,36 @@ function Home() {
     const handlePageChange = (page: number) => setCurrentPage(page);
 
     useEffect(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, [currentPage]);
+        setIsLoading(true); 
 
-    useEffect(() => {
-        if (!data) return;
+        let filtered = data || [];
+        
+        if (searchInput) {
+            filtered = filtered.filter((property) =>
+                property[searchType]?.toLowerCase().includes(searchInput.toLowerCase())
+            );
+        }
 
-        setIsLoading(true);
+        filtered = sortProperties(filtered, sortOrder);
+        setFilteredData(filtered);
 
-        const debounce = setTimeout(() => {
-            if (searchInput.trim()) {
-                const filtered = data.filter((property) =>
-                    property[searchType]?.toLowerCase().includes(searchInput.toLowerCase())
-                );
-                setFilteredData(filtered);
-            } else {
-                setFilteredData(data);
-            }
-            setIsLoading(false);
-        }, 500);
+        setIsLoading(false);  
+    }, [data, searchInput, searchType, sortOrder]);  
 
-        return () => clearTimeout(debounce);
-    }, [data, searchInput]);
+    const sortProperties = (properties: Property[], order: string) => {
+        const sortedProperties = [...properties];
+        return sortedProperties.sort((a, b) =>
+            order === 'asc' ? Number(a.price) - Number(b.price) : order === 'desc' ? Number(b.price) - Number(a.price) : 0
+        );
+    };
 
     const handleResultsPerPageChange = (e: any) => {
         setResultsPerPage(Number(e.target.value));
         setCurrentPage(1);
+    };
+
+    const handleSortOrderChange = (e: any) => {
+        setSortOrder(e.target.value);
     };
 
     if (error) {
@@ -61,7 +66,7 @@ function Home() {
         );
     }
 
-    if (!data) return <CircularProgress />;
+    if (isLoading) return <CircularProgress />; 
 
     return (
         <>
@@ -91,12 +96,24 @@ function Home() {
                         </Select>
                     </FormControl>
                 )}
+
+                <FormControl sx={{ width: '180px' }}>
+                    <InputLabel id="sort-order-label">Ordenar por precio</InputLabel>
+                    <Select
+                        label="Ordenar por precio"
+                        labelId="sort-order-label"
+                        value={sortOrder}
+                        onChange={handleSortOrderChange}
+                    >
+                        <MenuItem value="">Sin orden</MenuItem>
+                        <MenuItem value="asc">Ascendente</MenuItem>
+                        <MenuItem value="desc">Descendente</MenuItem>
+                    </Select>
+                </FormControl>
             </Box>
 
             <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-                {isLoading ? (
-                    <CircularProgress />
-                ) : filteredData.length > 0 ? (
+                {filteredData.length > 0 ? (
                     filteredData.map((property) => <DynamicCard key={property.id} {...property} />)
                 ) : (
                     <Typography>No se encontraron propiedades.</Typography>
