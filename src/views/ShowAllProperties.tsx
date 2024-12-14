@@ -38,31 +38,25 @@ export const ShowAllProperties = () => {
   useEffect(() => {
     fetchProperties();
   }, []);
+  {
+    /* <h2 className="font-bold text-4xl">Todas nuestras propiedades</h2> */
+  }
 
   return (
-    <div className="flex flex-col  w-full main-content">
-      {/* <h2 className="font-bold text-4xl">Todas nuestras propiedades</h2> */}
-
+    <div className="flex flex-col items-end justify-end  w-full main-content">
       <div className="map-container">
         <WorldMap />
       </div>
-
-      {/* <Input
-        onChangeInput={handleSearchChange}
-        placeholderText="Busca tu próxima propiedad"
-      /> */}
-      <div className="flex items-end justify-end mt-20 ">
-        <div className="grid grid-cols-2 gap-6 h-[500px] w-[30%] bg-white ">
-          {showFilteredProperties.length > 0 ? (
-            showFilteredProperties
-              .slice(0, 9)
-              .map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))
-          ) : (
-            <p>No se encontraron propiedades que coincidan con tu búsqueda.</p>
-          )}
-        </div>
+      <div className="grid grid-cols-2 h-auto  w-[40%] bg-white rounded card-container gap-6 mt-20 p-6 shadow-xl ">
+        {showFilteredProperties.length > 0 ? (
+          showFilteredProperties
+            .slice(0, 9)
+            .map((property) => (
+              <PropertyCard key={property.id} property={property} />
+            ))
+        ) : (
+          <p>No se encontraron propiedades que coincidan con tu búsqueda.</p>
+        )}
       </div>
     </div>
   );

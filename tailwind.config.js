@@ -10,7 +10,9 @@ export default {
       white: '#FFFFFF',
       gray: '#444444',
       graylight: '#F0F0F0',
+      grayCards: '#667d99',
       green : '#4fa81d',
+      orange : '#EFA31D'
     },
    
     extend: {},

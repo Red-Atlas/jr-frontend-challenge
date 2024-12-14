@@ -12,3 +12,12 @@
   z-index: 1;
   padding: 20px;
 }
+
+
+.card-container {
+  height: 600px;  
+  overflow-y: auto;  
+  padding-right: 15px;  
+  background-color: white;
+ 
+}
