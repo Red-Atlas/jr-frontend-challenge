@@ -1,11 +1,14 @@
 import { baseURL } from "../environments/baseURL";
 import { Property } from "../types/types";
 
-const API_URL = `${baseURL}/properties?page=1&limit=10`;
+const API_URL = `${baseURL}/properties`;
 
-export const getAllProperties = async (): Promise<Property[]> => {
+export const getAllProperties = async (
+  page: number,
+  limit: number
+): Promise<Property[]> => {
   try {
-    const response = await fetch(API_URL);
+    const response = await fetch(`${API_URL}?page=${page}&limit=${limit}`);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

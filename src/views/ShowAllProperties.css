@@ -6,10 +6,8 @@
 }
 
 .card-container {
-  height: 550px;  
+  height: 700px;  
   overflow-y: auto;  
-  padding-right: 15px;  
   background-color: white;
   margin-top: 30px;
-
 }

@@ -5,6 +5,7 @@ import PropertyCard from "../components/cards/PropertyCard";
 import Input from "../components/forms/Input";
 import "./ShowAllProperties.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import PaginationButtons from "../components/pagination/PaginationButtons";
 
 export const ShowAllProperties = () => {
   const [data, setData] = useState<Property[]>([]);
@@ -12,9 +13,13 @@ export const ShowAllProperties = () => {
     search: "",
     sort: "",
   });
+  const [paginationData, setPaginationData] = useState({
+    page: 1,
+    limit: 10,
+    totalPages: 1,
+  });
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     setFilteredProperties({
       ...filteredProperties,
       search: event.target.value,
@@ -29,20 +34,22 @@ export const ShowAllProperties = () => {
     setFilteredProperties({ ...filteredProperties, sort: "asc" });
   };
 
-  const fetchProperties = async () => {
-    const getProperties = await getAllProperties();
-
+  const fetchProperties = async (page: number, limit: number) => {
     try {
-      setData(getProperties);
-      console.log(getProperties);
+      const response = await getAllProperties(page, limit);
+      console.log(response);
+      setData(response);
+      const totalItems = 100;
+      const totalPages = Math.ceil(totalItems / limit);
+      setPaginationData((prev) => ({ ...prev, totalPages }));
     } catch (error) {
-      console.log("Ocurrio un error al obtener los datos", error);
+      console.log("Error al obtener datos:", error);
     }
   };
 
   useEffect(() => {
-    fetchProperties();
-  }, []);
+    fetchProperties(paginationData.page, paginationData.limit);
+  }, [paginationData.limit, paginationData.page]);
 
   const processedProperties = data
     .filter(
@@ -60,6 +67,12 @@ export const ShowAllProperties = () => {
       return 0;
     });
 
+  const handlePageChange = (newPage: number) => {
+    if (newPage > 0 && newPage <= paginationData.totalPages) {
+      setPaginationData((prev) => ({ ...prev, page: newPage }));
+    }
+  };
+
   return (
     <>
       <section className="w-full flex flex-col">
@@ -69,7 +82,7 @@ export const ShowAllProperties = () => {
         />
 
         <div className="w-full flex flex-col items-end mt-4 ">
-          <div className="w-[40%] flex flex-row items-center gap-4 p-6 h-[50px] bg-white -mb-8">
+          <div className="w-[40%] flex flex-row items-center gap-4 p-6 h-[50px] mr-10  bg-white -mb-8">
             <div className="flex flex-row items-center gap-2 text-red">
               <FaChevronUp />
               <button
@@ -85,9 +98,9 @@ export const ShowAllProperties = () => {
             >
               <FaChevronDown />
               <button className="font-semibold">Menor precio</button>
-            </div>{" "}
+            </div>
           </div>
-          <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-6 mt-20 p-6 shadow-xl ">
+          <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
             {processedProperties.length > 0 ? (
               processedProperties.map((property) => (
                 <PropertyCard key={property.id} property={property} />
@@ -97,6 +110,13 @@ export const ShowAllProperties = () => {
                 No se encontraron propiedades que coincidan con tu búsqueda.
               </p>
             )}
+            <div className="relative left-[100%]">
+              <PaginationButtons
+                page={paginationData.page}
+                totalPages={paginationData.totalPages}
+                handlePageChange={handlePageChange}
+              />
+            </div>
           </div>
         </div>
       </section>
