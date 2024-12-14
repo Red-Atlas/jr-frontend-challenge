@@ -4,8 +4,6 @@ interface Props {
   property: Property;
 }
 
-//TODO: Agregar condicional para mostrar per month en caso de que sea un alquiler
-//TODO2: Agregar calculo para la fecha
 const PropertyCard: React.FC<Props> = ({ property }) => {
   const updatedAt = new Date(property.updatedAt);
 

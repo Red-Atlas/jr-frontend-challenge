@@ -1,7 +1,7 @@
 import { baseURL } from "../environments/baseURL";
 import { Property } from "../types/types";
 
-const API_URL = `${baseURL}/properties?page=1&limit=9`;
+const API_URL = `${baseURL}/properties?page=1&limit=10`;
 
 export const getAllProperties = async (): Promise<Property[]> => {
   try {
