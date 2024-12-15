@@ -1,5 +1,5 @@
 import { Heart, MapPin } from 'lucide-react'
-import { PropertyCardProps } from '../../../types/property'
+import { PropertyCardProps } from '../../../Types/property'
 import { formatDate } from '../../helpers/date'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'

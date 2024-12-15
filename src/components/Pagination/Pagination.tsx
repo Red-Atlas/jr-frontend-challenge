@@ -1,4 +1,4 @@
-import { PaginationProps } from '../../../types/property'
+import { PaginationProps } from '../../../Types/property'
 
 export default function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
   return (

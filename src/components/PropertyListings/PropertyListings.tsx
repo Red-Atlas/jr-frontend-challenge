@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import PropertyCard from '../PropertyCard/PropertyCard'
 import FilterBar from '../FilterBar/FilterBar'
 import Pagination from "../Pagination/Pagination"
-import { Property, PropertyListingsProps } from '../../../types/property'
+import { Property, PropertyListingsProps } from '../../../Types/property'
 
 const ITEMS_PER_PAGE = 6
 

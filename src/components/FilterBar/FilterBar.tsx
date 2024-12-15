@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FilterBarProps } from '../../../types/property'
+import { FilterBarProps } from '../../../Types/property'
 
 export default function FilterBar({ onSearch, onSort }: FilterBarProps) {
   const [searchQuery, setSearchQuery] = useState('')

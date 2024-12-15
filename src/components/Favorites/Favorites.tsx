@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Property } from '../../../types/property'
+import { Property } from '../../../Types/property'
 import PropertyCard from '../PropertyCard/PropertyCard'
 import FilterBar from '../FilterBar/FilterBar'
 

@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { Property } from '../../../types/property'; 
+import { Property } from '../../../Types/property'; 
 import { useEffect, useState } from 'react';
 import { formatDate } from '../../helpers/date'; 
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
