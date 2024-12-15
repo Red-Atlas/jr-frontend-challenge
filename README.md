@@ -28,7 +28,6 @@
 
 
 
-
 Tecnologías Usadas
 Frameworks y Lenguajes:
 
