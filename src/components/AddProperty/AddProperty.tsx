@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../../config';
 
 export default function AddProperty() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function AddProperty() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/properties`, {
+      const response = await fetch(`${API_URL}/properties`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

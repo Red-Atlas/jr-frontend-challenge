@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Property } from '../../../Types/property'
 import PropertyCard from '../PropertyCard/PropertyCard'
 import FilterBar from '../FilterBar/FilterBar'
+import { API_URL } from '../../config';
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<Property[]>([])
@@ -9,7 +10,7 @@ export default function Favorites() {
 
   useEffect(() => {
     async function fetchFavorites() {
-      const response = await fetch('https://fake-api-listings.vercel.app/properties');
+      const response = await fetch(`${API_URL}/properties`);
       const data = await response.json();
       
       const storedFavorites = localStorage.getItem('favorites')

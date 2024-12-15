@@ -3,6 +3,7 @@ import { Property } from '../../../Types/property';
 import { useEffect, useState } from 'react';
 import { formatDate } from '../../helpers/date'; 
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { API_URL } from '../../config';
 
 export default function PropertyDetails() {
   const { id } = useParams<{ id: string }>(); 
@@ -12,7 +13,7 @@ export default function PropertyDetails() {
 
   useEffect(() => {
     const fetchPropertyDetails = async (id: string) => {
-      const response = await fetch(`/api/properties/${id}`); 
+      const response = await fetch(`${API_URL}/properties/${id}`); 
       const data = await response.json();
       setProperty(data); 
     };
@@ -32,7 +33,7 @@ export default function PropertyDetails() {
 
   const confirmDelete = async () => {
     try {
-      const response = await fetch(`/api/properties/${id}`, {
+      const response = await fetch(`${API_URL}/properties/${id}`, {
         method: 'DELETE',
       });
       

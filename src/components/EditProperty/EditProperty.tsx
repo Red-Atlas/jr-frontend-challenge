@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Property } from '../../../Types/property';
+import { API_URL } from '../../config';
 
 export default function EditProperty() {
   const { id } = useParams<{ id: string }>();
@@ -25,7 +26,7 @@ export default function EditProperty() {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await fetch(`/api/properties/${id}`);
+        const response = await fetch(`${API_URL}/properties/${id}`);
         const data = await response.json();
         setProperty(data);
         setFormData({
@@ -78,7 +79,7 @@ export default function EditProperty() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch(`/api/properties/${id}`, {
+      const response = await fetch(`${API_URL}/properties/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
