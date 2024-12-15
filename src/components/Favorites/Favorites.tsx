@@ -9,7 +9,7 @@ export default function Favorites() {
 
   useEffect(() => {
     async function fetchFavorites() {
-      const response = await fetch('/api/properties');
+      const response = await fetch('https://fake-api-listings.vercel.app/properties');
       const data = await response.json();
       
       const storedFavorites = localStorage.getItem('favorites')
