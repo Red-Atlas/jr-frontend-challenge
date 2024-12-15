@@ -8,7 +8,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch('/api/properties');
+        const response = await fetch('https://fake-api-listings.vercel.app/properties');
         const data = await response.json();
         setProperties(data);
       } catch (error) {
