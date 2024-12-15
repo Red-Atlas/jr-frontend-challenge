@@ -22,7 +22,7 @@ export interface Property {
   isActive: boolean;
   price: number;
   area: number;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
   owner: Owner;
 }

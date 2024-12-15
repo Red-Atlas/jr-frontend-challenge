@@ -8,6 +8,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import PaginationButtons from "../components/pagination/PaginationButtons";
 import { getPropertyByID } from "../services/getPropertyByID";
 import PropertyDetailsCard from "../components/cards/PropertyDetails/PropertyDetailsCard";
+import CreatePropertyForm from "../components/forms/CreatePropertyForm";
 
 export const ShowAllProperties = () => {
   const [data, setData] = useState<Property[]>([]);
@@ -24,6 +25,7 @@ export const ShowAllProperties = () => {
     null
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [createProperty, setIsCreateProperty] = useState(false);
 
   const handleOpenModal = async (id: string) => {
     try {
@@ -33,6 +35,15 @@ export const ShowAllProperties = () => {
     } catch (error) {
       console.error("Error fetching property details:", error);
     }
+  };
+
+  const handleCreateProperty = () => {
+    console.log("Creando propiedad");
+    setIsCreateProperty(true);
+  };
+
+  const handleClosePropertyModal = () => {
+    setIsCreateProperty(false);
   };
 
   const handleCloseModal = () => {
@@ -120,6 +131,10 @@ export const ShowAllProperties = () => {
             <FaChevronDown />
             <button className="font-semibold">Menor precio</button>
           </div>
+
+          <div>
+            <button onClick={handleCreateProperty}>Crear nuevo</button>
+          </div>
         </div>
         <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
           {processedProperties.length > 0 ? (
@@ -153,6 +168,10 @@ export const ShowAllProperties = () => {
               property={selectedProperty}
               onClose={handleCloseModal}
             />
+          )}
+
+          {createProperty && (
+            <CreatePropertyForm onClose={handleClosePropertyModal} />
           )}
         </div>
       </div>

@@ -1,0 +1,21 @@
+#modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+
+.form-container {
+  max-height: 800px; /* Ajusta esta altura según sea necesario */
+  overflow-y: auto;
+  padding-right: 10px; /* Espacio para evitar que el scroll tape contenido */
+  scrollbar-width: thin; /* Opcional: Para hacer el scroll más delgado */
+}
