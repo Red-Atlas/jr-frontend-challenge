@@ -1,4 +1,4 @@
-\## Instrucciones para levantar el proyecto
+## Instrucciones para levantar el proyecto
 
 1. **Clona el repositorio**:
    ```bash
