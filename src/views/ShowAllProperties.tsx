@@ -114,32 +114,40 @@ export const ShowAllProperties = () => {
       />
 
       <div className="w-full flex flex-col items-end mt-4 ">
-        <div className="w-[40%] flex flex-row items-center gap-4 p-6 h-[50px] mr-10  bg-white -mb-8">
-          <div className="flex flex-row items-center gap-2 text-red">
-            <FaChevronUp />
-            <button
-              onClick={() => orderByHigherPrice()}
-              className="font-semibold"
+        <div className="w-[40%] flex flex-row justify-between items-center gap-4 p-8 h-[50px] mr-10  bg-white -mb-8">
+          <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center gap-2 text-red">
+              <FaChevronUp />
+              <button
+                onClick={() => orderByHigherPrice()}
+                className="font-semibold"
+              >
+                Mayor precio
+              </button>
+            </div>
+            <div
+              onClick={orderByLowerPrice}
+              className="flex flex-row items-center gap-2 text-red"
             >
-              Mayor precio
-            </button>
-          </div>
-          <div
-            onClick={orderByLowerPrice}
-            className="flex flex-row items-center gap-2 text-red"
-          >
-            <FaChevronDown />
-            <button className="font-semibold">Menor precio</button>
+              <FaChevronDown />
+              <button className="font-semibold">Menor precio</button>
+            </div>
           </div>
 
           <div>
-            <button onClick={handleCreateProperty}>Crear nuevo</button>
+            <button
+              className="bg-red p-1 rounded text-white"
+              onClick={handleCreateProperty}
+            >
+              Crear Propiedad
+            </button>
           </div>
         </div>
         <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
           {processedProperties.length > 0 ? (
             processedProperties.map((property) => (
               <div
+                key={property.id}
                 className="pointer"
                 onClick={() => handleOpenModal(property.id)}
               >

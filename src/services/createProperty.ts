@@ -1,7 +1,7 @@
 import { baseURL } from "../environments/baseURL";
 import { Property } from "../types/types";
 
-export const createProperty = async (property: Property): Promise<void> => {
+export const createProperty = async (property: Property): Promise<Response> => {
   try {
     const response = await fetch(`${baseURL}/properties`, {
       method: "POST",
@@ -16,6 +16,7 @@ export const createProperty = async (property: Property): Promise<void> => {
     }
 
     console.log("Property created sucessfully");
+    return response;
   } catch (error) {
     console.error("Error creating property", error);
     throw error;

@@ -14,8 +14,8 @@
 
 
 .form-container {
-  max-height: 800px; /* Ajusta esta altura según sea necesario */
+  max-height: 800px; 
   overflow-y: auto;
-  padding-right: 10px; /* Espacio para evitar que el scroll tape contenido */
-  scrollbar-width: thin; /* Opcional: Para hacer el scroll más delgado */
+  padding-right: 10px; 
+  scrollbar-width: thin;
 }
