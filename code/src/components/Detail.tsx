@@ -53,7 +53,7 @@ function Detail() {
   const navigate = useNavigate();
 
   const handleGoBack = () => {
-    navigate(-1); 
+    navigate(-1);
   };
 
   if (error) return <Typography color="error">Error: {error}</Typography>;
@@ -76,66 +76,65 @@ function Detail() {
 
   return (
     <>
-    <Header />
-    <DetailContainer>
-       <Button variant="contained" onClick={handleGoBack}>
-        Volver atrás
-      </Button>
-      <Typography variant="h4" component="h1" gutterBottom>
-        {title}
-      </Typography>
+      <Header />
+      <DetailContainer>
+        <Button variant="contained" onClick={handleGoBack} sx={{ marginRight: 'auto' }}>
+          Volver atrás
+        </Button>
+        <Typography variant="h4" component="h1" gutterBottom>
+          {title}
+        </Typography>
 
-      <StyledCardMedia
-        image={images[0]}
-        title={title}
-      />
+        <StyledCardMedia
+          image={images[0]}
+          title={title}
+        />
 
-      <InfoBox>
-        <Typography variant="body1">
-          <strong>Dirección:</strong> {address}
+        <InfoBox>
+          <Typography variant="body1">
+            <strong>Dirección:</strong> {address}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Estado:</strong>{' '}
+            <ChipStyled
+              label={isActive ? 'Activo' : 'Inactivo'}
+              color={isActive ? 'success' : 'error'}
+            />
+          </Typography>
+          { type && ( <Typography variant="body1">
+            <strong>Tipo:</strong> {type.charAt(0).toUpperCase() + type.slice(1)}
+          </Typography>)}
+          <Typography variant="body1">
+            <strong>Área:</strong> {area} m²
+          </Typography>
+          <Typography variant="body1">
+            <strong>Precio:</strong> ${price.toLocaleString()}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Status:</strong>{' '}
+            {status === 'sale' ? 'En venta' : 'En alquiler'}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Publicado el:</strong> {createdAt ? format(new Date(createdAt), 'dd/MM/yyyy') : 'Fecha no disponible'}
+          </Typography>
+        </InfoBox>
+        <SectionTitle variant="h5">Descripción</SectionTitle>
+        <Typography variant="body2" color="text.secondary">
+          {description}
         </Typography>
-        <Typography variant="body1">
-          <strong>Estado:</strong>{' '}
-          <ChipStyled
-            label={isActive ? 'Activo' : 'Inactivo'}
-            color={isActive ? 'success' : 'error'}
-          />
-        </Typography>
-        <Typography variant="body1">
-          <strong>Tipo:</strong> {type.charAt(0).toUpperCase() + type.slice(1)}
-        </Typography>
-        <Typography variant="body1">
-          <strong>Área:</strong> {area} m²
-        </Typography>
-        <Typography variant="body1">
-          <strong>Precio:</strong> ${price.toLocaleString()}
-        </Typography>
-        <Typography variant="body1">
-          <strong>Status:</strong>{' '}
-          {status === 'sale' ? 'En venta' : 'En alquiler'}
-        </Typography>
-        <Typography variant="body1">
-          <strong>Publicado el:</strong> {format(new Date(createdAt), 'dd/MM/yyyy')}
-        </Typography>
-      </InfoBox>
 
-      <SectionTitle variant="h5">Descripción</SectionTitle>
-      <Typography variant="body2" color="text.secondary">
-        {description}
-      </Typography>
+        <MapComponent location={{ lat: location.lat, lng: location.lng }} title={title} />
 
-      <MapComponent location={{ lat: location.lat, lng: location.lng }} title={title} />
-
-      <OwnerBox>
-        <Typography variant="h6">Propietario</Typography>
-        <Typography variant="body1">
-          <strong>Nombre:</strong> {owner.name}
-        </Typography>
-        <Typography variant="body1">
-          <strong>Contacto:</strong> {owner.contact}
-        </Typography>
-      </OwnerBox>
-    </DetailContainer>
+        <OwnerBox>
+          <Typography variant="h6">Propietario</Typography>
+          <Typography variant="body1">
+            <strong>Nombre:</strong> {owner.name}
+          </Typography>
+          <Typography variant="body1">
+            <strong>Contacto:</strong> {owner.contact}
+          </Typography>
+        </OwnerBox>
+      </DetailContainer>
     </>
   );
 }

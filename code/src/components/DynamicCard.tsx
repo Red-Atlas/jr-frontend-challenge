@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -5,10 +6,15 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid2 from '@mui/material/Grid2';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { format } from 'date-fns';
 import { PropertyCard } from '../types';
 import { FunctionComponent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import { useDeleteProperty } from '../hooks/useDeleteProperty';
 
 const DynamicCard: FunctionComponent<PropertyCard> = ({
   id,
@@ -22,16 +28,56 @@ const DynamicCard: FunctionComponent<PropertyCard> = ({
   area,
   isActive,
   createdAt,
+  location,
+  onUpdate,
+  onDelete,
 }) => {
   const navigate = useNavigate();
+  const { deleteProperty } = useDeleteProperty();
 
-  const handleDetailsClick = () => {
-    navigate(`/detail/${id}`);
+  const handleDetailsClick = (event: MouseEvent<HTMLElement>) => {
+    if (event.target instanceof HTMLElement && !event.target.closest('button')) {
+      navigate(`/detail/${id}`);
+    }
+  };
+
+  const handleEdit = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    if (onUpdate) {
+      onUpdate({ id, title, description, images, price, type, status, address, area, isActive, createdAt, location });
+    }
+  };
+
+  const handleDelete = async (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    try {
+      const confirmed = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¡Este cambio no se puede deshacer!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+      });
+
+      if (confirmed.isConfirmed) {
+        const success = await deleteProperty(id);
+        if (success) {
+          Swal.fire('Eliminado', 'La propiedad ha sido eliminada.', 'success');
+          if (onDelete) {
+            onDelete(id);
+          }
+        }
+      }
+    } catch (err) {
+      Swal.fire('Error', 'Hubo un problema al eliminar la propiedad.', 'error');
+    }
   };
 
   return (
     <Card
-    onClick={handleDetailsClick}
+      onClick={handleDetailsClick}
       sx={{
         cursor: 'pointer',
         width: '100%',
@@ -69,7 +115,7 @@ const DynamicCard: FunctionComponent<PropertyCard> = ({
         >
           {isActive ? 'Activo' : 'Inactivo'}
         </Typography>
-        <Typography
+       { type && (<Typography
           variant="body2"
           sx={{
             position: 'absolute',
@@ -83,7 +129,7 @@ const DynamicCard: FunctionComponent<PropertyCard> = ({
           }}
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
-        </Typography>
+        </Typography>)}
       </Box>
 
       <CardContent sx={{ padding: 2 }}>
@@ -135,7 +181,7 @@ const DynamicCard: FunctionComponent<PropertyCard> = ({
             color="text.secondary"
             sx={{ fontStyle: 'italic', marginBottom: 1 }}
           >
-            Publicado: {format(new Date(createdAt), 'dd/MM/yyyy')}
+            Publicado: {createdAt ? format(new Date(createdAt), 'dd/MM/yyyy') : 'Fecha no disponible'}
           </Typography>
           <Typography
             variant="body2"
@@ -149,6 +195,12 @@ const DynamicCard: FunctionComponent<PropertyCard> = ({
       </CardContent>
 
       <CardActions sx={{ justifyContent: 'center' }}>
+        <IconButton onClick={handleEdit} sx={{ color: 'primary.main', '&:hover': { color: 'primary.dark' } }}>
+          <EditIcon />
+        </IconButton>
+        <IconButton onClick={handleDelete} sx={{ color: 'error.main', '&:hover': { color: 'error.dark' } }}>
+          <DeleteIcon />
+        </IconButton>
       </CardActions>
     </Card>
   );

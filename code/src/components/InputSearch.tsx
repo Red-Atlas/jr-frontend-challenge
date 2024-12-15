@@ -1,4 +1,5 @@
 import { TextField, MenuItem, FormControl, InputLabel, Select, Box } from '@mui/material';
+import { ChangeEvent, FunctionComponent } from 'react';
 
 interface InputSearchProps {
     onSearch: (input: string) => void; 
@@ -6,8 +7,8 @@ interface InputSearchProps {
     setSearchType: (type: 'title' | 'address') => void; 
 }
 
-const InputSearch: React.FC<InputSearchProps> = ({ onSearch, searchType, setSearchType }) => {
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+const InputSearch: FunctionComponent<InputSearchProps> = ({ onSearch, searchType, setSearchType }) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         onSearch(e.target.value); 
     };
 
