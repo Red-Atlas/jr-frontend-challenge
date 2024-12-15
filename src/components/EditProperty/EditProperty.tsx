@@ -5,7 +5,7 @@ import { Property } from '../../../types/property';
 export default function EditProperty() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [property, setProperty] = useState<Property | null>(null);
+  const [_property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     title: '',

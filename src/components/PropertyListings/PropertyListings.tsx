@@ -5,7 +5,6 @@ import PropertyCard from '../PropertyCard/PropertyCard'
 import FilterBar from '../FilterBar/FilterBar'
 import Pagination from "../Pagination/Pagination"
 import { Property, PropertyListingsProps } from '../../../types/property'
-import { useNavigate } from 'react-router-dom'
 
 const ITEMS_PER_PAGE = 6
 
@@ -20,7 +19,7 @@ export default function PropertyListings({ properties }: PropertyListingsProps) 
   const [currentPage, setCurrentPage] = useState(1)
   const [currentProperties, setCurrentProperties] = useState<Property[]>([])
   const [isMapView, setIsMapView] = useState(false)
-  const [map, setMap] = useState<any>(null)
+  const [_map, setMap] = useState<any>(null)
   const [markers, setMarkers] = useState<any[]>([])
   const [activeInfoWindow, setActiveInfoWindow] = useState<any>(null)
 
@@ -136,8 +135,6 @@ export default function PropertyListings({ properties }: PropertyListingsProps) 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
   }
-
-  const navigate = useNavigate()
 
   return (
     <div className="container mx-auto px-4 py-4 sm:py-6 lg:py-8">
