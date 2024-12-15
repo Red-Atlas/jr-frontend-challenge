@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropertyListings from '../components/PropertyListings/PropertyListings';
-import { Property } from '../../types/property';
+import { Property } from '../../Types/property';
 
 const Home: React.FC = () => {
   const [properties, setProperties] = useState<Property[]>([]);
