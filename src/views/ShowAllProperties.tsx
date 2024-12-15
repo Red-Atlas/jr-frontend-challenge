@@ -6,6 +6,8 @@ import Input from "../components/forms/Input";
 import "./ShowAllProperties.css";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import PaginationButtons from "../components/pagination/PaginationButtons";
+import { getPropertyByID } from "../services/getPropertyByID";
+import PropertyDetailsCard from "../components/cards/PropertyDetails/PropertyDetailsCard";
 
 export const ShowAllProperties = () => {
   const [data, setData] = useState<Property[]>([]);
@@ -18,6 +20,25 @@ export const ShowAllProperties = () => {
     limit: 10,
     totalPages: 1,
   });
+  const [selectedProperty, setSelectedProperty] = useState<Property | null>(
+    null
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = async (id: string) => {
+    try {
+      const property = await getPropertyByID(id);
+      setSelectedProperty(property); // Guardar la propiedad seleccionada
+      setIsModalOpen(true); // Abrir el modal
+    } catch (error) {
+      console.error("Error fetching property details:", error);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProperty(null);
+  };
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilteredProperties({
@@ -49,6 +70,7 @@ export const ShowAllProperties = () => {
 
   useEffect(() => {
     fetchProperties(paginationData.page, paginationData.limit);
+    // getPropertyByID("18b5a329-e80d-4d33-853f-447c172986cb");
   }, [paginationData.limit, paginationData.page]);
 
   const processedProperties = data
@@ -74,52 +96,66 @@ export const ShowAllProperties = () => {
   };
 
   return (
-    <>
-      <section className="w-full flex flex-col">
-        <Input
-          placeholderText="Buscá tu propiedad por nombre o dirección"
-          onChangeInput={handleSearchChange}
-        />
+    <section className="w-full flex flex-col">
+      <Input
+        placeholderText="Buscá tu propiedad por nombre o dirección"
+        onChangeInput={handleSearchChange}
+      />
 
-        <div className="w-full flex flex-col items-end mt-4 ">
-          <div className="w-[40%] flex flex-row items-center gap-4 p-6 h-[50px] mr-10  bg-white -mb-8">
-            <div className="flex flex-row items-center gap-2 text-red">
-              <FaChevronUp />
-              <button
-                onClick={() => orderByHigherPrice()}
-                className="font-semibold"
-              >
-                Mayor precio
-              </button>
-            </div>
-            <div
-              onClick={orderByLowerPrice}
-              className="flex flex-row items-center gap-2 text-red"
+      <div className="w-full flex flex-col items-end mt-4 ">
+        <div className="w-[40%] flex flex-row items-center gap-4 p-6 h-[50px] mr-10  bg-white -mb-8">
+          <div className="flex flex-row items-center gap-2 text-red">
+            <FaChevronUp />
+            <button
+              onClick={() => orderByHigherPrice()}
+              className="font-semibold"
             >
-              <FaChevronDown />
-              <button className="font-semibold">Menor precio</button>
-            </div>
+              Mayor precio
+            </button>
           </div>
-          <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
-            {processedProperties.length > 0 ? (
-              processedProperties.map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))
-            ) : (
-              <p>
-                No se encontraron propiedades que coincidan con tu búsqueda.
-              </p>
-            )}
-            <div className="relative left-[100%]">
-              <PaginationButtons
-                page={paginationData.page}
-                totalPages={paginationData.totalPages}
-                handlePageChange={handlePageChange}
-              />
-            </div>
+          <div
+            onClick={orderByLowerPrice}
+            className="flex flex-row items-center gap-2 text-red"
+          >
+            <FaChevronDown />
+            <button className="font-semibold">Menor precio</button>
           </div>
         </div>
-      </section>
-    </>
+        <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
+          {processedProperties.length > 0 ? (
+            processedProperties.map((property) => (
+              <div
+                className="pointer"
+                onClick={() => handleOpenModal(property.id)}
+              >
+                <PropertyCard key={property.id} property={property} />
+              </div>
+            ))
+          ) : (
+            <p>No se encontraron propiedades que coincidan con tu búsqueda.</p>
+          )}
+          <div
+            className={` ${
+              processedProperties.length < 10
+                ? "hidden"
+                : "relative left-[100%]"
+            }`}
+          >
+            <PaginationButtons
+              page={paginationData.page}
+              totalPages={paginationData.totalPages}
+              handlePageChange={handlePageChange}
+            />
+          </div>
+
+          {isModalOpen && selectedProperty && (
+            <PropertyDetailsCard
+              property={selectedProperty}
+              onClose={handleCloseModal}
+            />
+          )}
+        </div>
+      </div>
+    </section>
   );
 };
