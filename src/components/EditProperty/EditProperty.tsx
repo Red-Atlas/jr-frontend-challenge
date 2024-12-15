@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Property } from '../../../types/property';
+import { Property } from '../../../Types/property';
 
 export default function EditProperty() {
   const { id } = useParams<{ id: string }>();
