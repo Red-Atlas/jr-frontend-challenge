@@ -42,5 +42,7 @@ Por esto se tomo la decisión que no es la más eficiente para el sistema, ya qu
 
 Para mejorar este punto creo que se podría agregar un parametro más al API, de manera tal que permite traer por páginas y limite, pero también por titulo, dirección o cualquier otro parámetro que se considere necesario.
 
- # pequeño detalle del commit
+# pequeño detalle del commit
 los commits se muestran el 16 los utlimos por mal horario de mi pc
+
+ 
