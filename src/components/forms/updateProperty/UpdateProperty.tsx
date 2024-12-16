@@ -57,6 +57,7 @@ export const UpdatePropertyForm: React.FC<Props> = ({ onClose, property }) => {
     values: Property,
     { resetForm }: FormikHelpers<Property>
   ) => {
+    setLoading(true);
     try {
       const response = await updateProperty(property.id, values);
       console.log("Propiedad actualizada exitosamente", response);
@@ -92,13 +93,18 @@ export const UpdatePropertyForm: React.FC<Props> = ({ onClose, property }) => {
         progress: undefined,
         theme: "dark",
       });
+    } finally {
       setLoading(false);
     }
   };
 
   return (
     <section id="modal-backdrop">
-      {loading && <span>Cargando....</span>}
+      {loading && (
+        <div className="absolute inset-0 bg-white bg-opacity-50 flex items-center justify-center z-10">
+          <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>
+      )}
       <div className="bg-white w-[350px] md:w-[800px] h-auto rounded p-4">
         <div className="flex flex-row justify-between items-center">
           <span className="text-2xl font-bold">Editar propiedad</span>

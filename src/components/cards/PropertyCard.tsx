@@ -21,10 +21,10 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
       />
       <div className="flex flex-col items-start gap-2 p-2">
         <div className="flex flex-row items-center justify-between w-full gap-2">
-          <span className="text-green">{property.price}$</span>
-          <span>{property.area} m2</span>
+          <span className="text-green font-semibold">{property.price}$</span>
+          <span className="text-grayCards">{property.area}m2</span>
         </div>
-        <span>{property.address.slice(0, 30)}</span>
+        <span className="text-gray">{property.address.slice(0, 30)}</span>
         <div className="flex flex-row items-center gap-2 ">
           <span className="bg-grayCards text-white rounded-lg p-1 ">
             {property.type}
@@ -49,14 +49,8 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
           </span>
         </div>
 
-        <span>Publication date : {formattedDate}</span>
+        <span className="text-gray">Publicado desde : {formattedDate}</span>
       </div>
-      {/* <button
-        onClick={handleEditClick}
-        className="bg-red p1 rounded text-white"
-      >
-        Editar
-      </button> */}
     </div>
   );
 };
