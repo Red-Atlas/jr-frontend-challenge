@@ -1,0 +1,21 @@
+.container {
+  .searchBar {
+    width: 70%;
+  }
+
+  .list {
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0;
+  }
+
+  .pagination {
+    background-color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+  }
+}
