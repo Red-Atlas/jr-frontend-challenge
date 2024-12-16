@@ -1,6 +1,6 @@
 import { IoIosCloseCircle } from "react-icons/io";
 import "./UpdateProperty.css";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Property } from "../../../types/types";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
@@ -17,7 +17,6 @@ interface Props {
 export const UpdatePropertyForm: React.FC<Props> = ({ onClose, property }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [updatedProperty, setUpdatedProperty] = useState<Property | null>(null);
 
   const initialValues: Property = {
     address: property.address,
@@ -28,9 +27,14 @@ export const UpdatePropertyForm: React.FC<Props> = ({ onClose, property }) => {
     status: property.status,
     price: property.price,
     area: property.area,
+    id: "",
+    images: [],
+    isActive: false,
+    createdAt: "",
+    updatedAt: "",
+    owner: undefined,
   };
 
-  //TODO:Mover a utils
   const validationSchema = Yup.object({
     address: Yup.string().required("La dirección es obligatoria"),
     title: Yup.string().required("El título es obligatorio"),
@@ -91,7 +95,6 @@ export const UpdatePropertyForm: React.FC<Props> = ({ onClose, property }) => {
       setLoading(false);
     }
   };
-  useEffect(() => {}, [updatedProperty]);
 
   return (
     <section id="modal-backdrop">

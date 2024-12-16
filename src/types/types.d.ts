@@ -24,5 +24,5 @@ export interface Property {
   area: number;
   createdAt: string;
   updatedAt: string;
-  owner: Owner;
+  owner?: Owner;
 }

@@ -2,6 +2,11 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+    { "path": "./tsconfig.node.json" }, 
+  ],
+  "compilerOptions": {
+    "strict": true, // Mantén verificaciones estrictas en general
+    "noUnusedLocals": false, // Permitir variables no utilizadas
+    "noUnusedParameters": false, // Permitir parámetros no utilizados
+  }
 }

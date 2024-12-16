@@ -26,6 +26,8 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
     price: 0,
     area: 0,
     owner: { name: "", contact: "" },
+    createdAt: "",
+    updatedAt: "",
   };
 
   //TODO:Mover a utils

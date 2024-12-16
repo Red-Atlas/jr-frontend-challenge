@@ -1,4 +1,3 @@
-import { Navigate, useNavigate } from "react-router";
 import { Property } from "../../types/types";
 
 interface Props {
@@ -11,13 +10,6 @@ const PropertyCard: React.FC<Props> = ({ property }) => {
   const day = updatedAt.getDate().toString().padStart(2, "0");
   const month = (updatedAt.getMonth() + 1).toString().padStart(2, "0");
   const year = updatedAt.getFullYear();
-
-  const navigate = useNavigate();
-
-  const handleEditClick = () => {
-    // Navegar a la ruta de edición con el ID de la propiedad
-    navigate(`/edit-property/${property.id}`);
-  };
 
   const formattedDate = `${day}-${month}-${year}`;
   return (

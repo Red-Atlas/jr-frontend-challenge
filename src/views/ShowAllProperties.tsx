@@ -116,7 +116,7 @@ export const ShowAllProperties = () => {
 
       <div className="w-full flex flex-col items-center md:items-end mt-4 ">
         <div className="w-[350px] md:w-[40%] flex flex-row justify-between items-center gap-4 p-8 h-[50px] mr-1 md:mr-10  bg-white -mb-8">
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row gap-4 items-center">
             <div className="flex flex-row items-center gap-2 text-red">
               <FaChevronUp />
               <button
@@ -162,7 +162,7 @@ export const ShowAllProperties = () => {
             className={` ${
               processedProperties.length < 10
                 ? "hidden"
-                : "relative left-[100%]"
+                : "flex md:relative md:left-[100%]"
             }`}
           >
             <PaginationButtons
