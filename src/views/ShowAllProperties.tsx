@@ -144,7 +144,7 @@ export const ShowAllProperties = () => {
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-1   md:grid-cols-2  h-auto w-[100%]  md:w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
+        <div className="grid grid-cols-1 md:grid-cols-2 h-auto w-[100%]  md:w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
           {processedProperties.length > 0 ? (
             processedProperties.map((property) => (
               <div
@@ -162,7 +162,7 @@ export const ShowAllProperties = () => {
             className={` ${
               processedProperties.length < 10
                 ? "hidden"
-                : "flex md:relative md:left-[100%]"
+                : "flex md:relative md:left-[70%]"
             }`}
           >
             <PaginationButtons
