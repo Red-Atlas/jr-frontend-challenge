@@ -1,0 +1,214 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .font-outline-1 {
+        -webkit-text-stroke: 1.5px rgb(48, 47, 47);
+    }
+}
+
+@font-face {
+    font-family: "Avenir Next LT Pro";
+    src: url("/src/assets/fonts/AvenirNextLTPro-Bold.otf") format("opentype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Avenir Next LT Pro";
+    src: url("/src/assets/fonts/AvenirNextLTPro-Regular.otf") format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+:root {
+    font-family: "Avenir Next LT Pro", sans-serif;
+    font-weight: normal;
+    --bg-color: #fafafa;
+    background-color: var(--bg-color);
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    box-sizing: border-box;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+/* Header animation */
+@keyframes scale {
+    0% {
+        transform: scaleX(100%);
+        opacity: 1;
+    }
+    15% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+}
+
+/* PropertyCard animation */
+
+@keyframes reveal {
+    from {
+        translate: 0 100px;
+        opacity: 0.1;
+        scale: 0.9;
+    }
+    to {
+        translate: 0 0;
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+/* Skeleton animation */
+.skeleton-animation {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Building animations */
+
+.roof-building-animation {
+    animation: roof-up 2s ease-in-out alternate-reverse infinite;
+}
+.body-building-animation {
+    animation: body-up 2s ease-in-out alternate-reverse infinite;
+}
+.door-building-animation {
+    animation: door-up 2s ease-in-out alternate-reverse infinite;
+}
+.knob-building-animation {
+    animation: knob-up 2s ease-in-out alternate-reverse infinite;
+}
+.window-building-animation {
+    animation: window-up 2s ease-in-out alternate-reverse infinite;
+}
+.w-frame-building-animation {
+    animation: window-h-frame-up 2s ease-in-out alternate-reverse infinite;
+}
+
+@keyframes roof-up {
+    0% {
+        transform: translateY(200%);
+    }
+    60% {
+        transform: translateY(200%);
+    }
+    80% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes body-up {
+    0% {
+        transform: translateY(100%);
+    }
+    10% {
+        transform: translateY(100%);
+    }
+    20% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes door-up {
+    0% {
+        transform: translateY(200%);
+    }
+    20% {
+        transform: translateY(200%);
+    }
+    40% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes knob-up {
+    0% {
+        transform: translateY(1200%);
+    }
+    20% {
+        transform: translateY(1200%);
+    }
+    40% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes window-up {
+    0% {
+        transform: translateY(200%);
+    }
+    40% {
+        transform: translateY(200%);
+    }
+    60% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes window-h-frame-up {
+    0% {
+        transform: translateY(2500%);
+    }
+    40% {
+        transform: translateY(2500%);
+    }
+    60% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Spinner animation */
+.spinner {
+    animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.gradient {
+    background-size: 300%;
+    background-position: left;
+    transition: 400ms background-position ease-in-out, 300ms box-shadow ease-in-out;
+}
+
+.gradient:hover {
+    background-position: right;
+}
