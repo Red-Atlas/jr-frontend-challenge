@@ -43,7 +43,7 @@ export default function PropertyCard({ property, onFavorite }: PropertyCardProps
           <div className="flex items-center justify-center gap-2 mb-2 h-[48px]">
             <MapPin size={18} className="text-gray-600 flex-shrink-0" />
             <a 
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.address)}`} 
+              href={`https://www.google.com/maps/search/?api=1&query=${property.location.lat},${property.location.lng}`} 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-black hover:text-gray-600 line-clamp-2 text-sm"
