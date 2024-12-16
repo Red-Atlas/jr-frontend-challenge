@@ -30,29 +30,27 @@
 
 ### Frameworks y Lenguajes
 
-React: Para crear interfaces de usuario dinámicas y componentes reutilizables.
+- React
 
-TypeScript: Para garantizar tipado estático y prevenir errores en tiempo de desarrollo.
+- TypeScript
 
-Vite: Por su velocidad superior en el proceso de desarrollo gracias a su enfoque de bundling moderno y tiempos de arranque más rápidos en comparación con alternativas como Create React App.
+Vite: Por la velocidad y tiempos de arranque más rápidos en comparación a Create React App.
 
 ### Estilos
 
-TailwindCSS: Una herramienta de utilidad para estilos que permite crear diseños consistentes de forma rápida.
+TailwindCSS: Suelo usarlo para los estilos para que sea más rápido y sencillo.
 
 ### APIs
 
 Google Maps API: Para integrar un mapa interactivo en las vistas de las propiedades.
 
-Fake API Listings: Simula datos de propiedades usando una API ficticia. Se configuró un proxy en vite.config.ts para manejar problemas de CORS durante el desarrollo local.
+Fake API Listings: Simula datos de propiedades usando una API ficticia. Se configuró un proxy en vite.config.ts para manejar problemas de CORS.
 
 ### Diseño de UX
 
-El diseño se centró en ofrecer una experiencia intuitiva y fluida, minimizando los pasos necesarios para realizar tareas clave. Se priorizaron las siguientes funcionalidades:
+Cree las vistas para agregar, editar y eliminar propiedades. Agregue formularios claros con validación para evitar errores de usuario.
 
-Vistas para agregar, editar y eliminar propiedades: Proveen formularios claros con validación para evitar errores de usuario.
-
-Interfaz moderna y receptiva: Optimizada para dispositivos móviles y de escritorio, asegurando accesibilidad.
+Diseños y estilos para que se adapten a todos los dispositivos.
 
 
 ### Demo en Vercel en vivo:
