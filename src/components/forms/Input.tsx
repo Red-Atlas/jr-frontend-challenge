@@ -7,7 +7,7 @@ const Input: React.FC<Props> = ({ placeholderText, onChangeInput }) => {
   return (
     <input
       onChange={onChangeInput}
-      className="bg-white shadow-xl border-none focus:no-underline p-2 rounded-xl mt-5 w-[500px]"
+      className="bg-white shadow-xl border-none focus:no-underline p-2 rounded-xl mt-5 w-[350px] sm:w-[500px] md:w-[600px] "
       placeholder={placeholderText}
       type="text"
     />

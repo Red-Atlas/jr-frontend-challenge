@@ -8,7 +8,7 @@ import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import PaginationButtons from "../components/pagination/PaginationButtons";
 import { getPropertyByID } from "../services/getPropertyByID";
 import PropertyDetailsCard from "../components/cards/PropertyDetails/PropertyDetailsCard";
-import CreatePropertyForm from "../components/forms/CreatePropertyForm";
+import CreatePropertyForm from "../components/forms/createProperty/CreatePropertyForm";
 
 export const ShowAllProperties = () => {
   const [data, setData] = useState<Property[]>([]);
@@ -81,7 +81,6 @@ export const ShowAllProperties = () => {
 
   useEffect(() => {
     fetchProperties(paginationData.page, paginationData.limit);
-    // getPropertyByID("18b5a329-e80d-4d33-853f-447c172986cb");
   }, [paginationData.limit, paginationData.page]);
 
   const processedProperties = data
@@ -108,13 +107,15 @@ export const ShowAllProperties = () => {
 
   return (
     <section className="w-full flex flex-col">
-      <Input
-        placeholderText="Buscá tu propiedad por nombre o dirección"
-        onChangeInput={handleSearchChange}
-      />
+      <div className="pl-14 md:pl-6">
+        <Input
+          placeholderText="Buscá tu propiedad por nombre o dirección"
+          onChangeInput={handleSearchChange}
+        />
+      </div>
 
-      <div className="w-full flex flex-col items-end mt-4 ">
-        <div className="w-[40%] flex flex-row justify-between items-center gap-4 p-8 h-[50px] mr-10  bg-white -mb-8">
+      <div className="w-full flex flex-col items-center md:items-end mt-4 ">
+        <div className="w-[350px] md:w-[40%] flex flex-row justify-between items-center gap-4 p-8 h-[50px] mr-1 md:mr-10  bg-white -mb-8">
           <div className="flex flex-row items-center">
             <div className="flex flex-row items-center gap-2 text-red">
               <FaChevronUp />
@@ -139,11 +140,11 @@ export const ShowAllProperties = () => {
               className="bg-red p-1 rounded text-white"
               onClick={handleCreateProperty}
             >
-              Crear Propiedad
+              Crear propiedad
             </button>
           </div>
         </div>
-        <div className="grid grid-cols-2 h-auto w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
+        <div className="grid grid-cols-1   md:grid-cols-2  h-auto w-[100%]  md:w-[40%] rounded card-container gap-8 mr-10 mt-20 p-6 shadow-xl ">
           {processedProperties.length > 0 ? (
             processedProperties.map((property) => (
               <div

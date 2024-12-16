@@ -1,37 +1,40 @@
 import { IoIosCloseCircle } from "react-icons/io";
-import "./CreateProperty.css";
-import React from "react";
-import { Property } from "../../types/types";
-import { createProperty } from "../../services/createProperty";
+import "./UpdateProperty.css";
+import React, { useEffect, useState } from "react";
+import { Property } from "../../../types/types";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { updateProperty } from "../../../services/updateProperty";
+import { useNavigate } from "react-router";
 
 interface Props {
+  property: Property;
   onClose: () => void;
 }
 
-const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
+export const UpdatePropertyForm: React.FC<Props> = ({ onClose, property }) => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [updatedProperty, setUpdatedProperty] = useState<Property | null>(null);
+
   const initialValues: Property = {
-    id: "500",
-    address: "",
-    title: "",
-    description: "",
-    location: { lat: 0, lng: 0 },
-    images: ["https://dummyimage.com/800x600/cccccc/000000&text=Property+11"],
-    type: "apartment",
-    status: "sale",
-    isActive: true,
-    price: 0,
-    area: 0,
-    owner: { name: "", contact: "" },
+    address: property.address,
+    title: property.title,
+    description: property.description,
+    location: property.location,
+    type: property.type,
+    status: property.status,
+    price: property.price,
+    area: property.area,
   };
 
   //TODO:Mover a utils
   const validationSchema = Yup.object({
     address: Yup.string().required("La dirección es obligatoria"),
     title: Yup.string().required("El título es obligatorio"),
+    description: Yup.string().required("La descripcion es obligatoria"),
     type: Yup.string()
       .oneOf(["apartment", "house"])
       .required("El tipo es obligatorio"),
@@ -51,10 +54,11 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
     { resetForm }: FormikHelpers<Property>
   ) => {
     try {
-      const response = await createProperty(values);
-      console.log("Propiedad creada exitosamente", response);
+      const response = await updateProperty(property.id, values);
+      console.log("Propiedad actualizada exitosamente", response);
+      setLoading(true);
 
-      if (response.status === 201) {
+      if (response.status === 200 || response.status === 204) {
         toast.success(`Registro creado correctamente!`, {
           position: "top-right",
           autoClose: 3000,
@@ -66,6 +70,10 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
           theme: "light",
         });
       }
+
+      onClose();
+
+      navigate("/*");
 
       resetForm();
     } catch (error) {
@@ -80,14 +88,17 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
         progress: undefined,
         theme: "dark",
       });
+      setLoading(false);
     }
   };
+  useEffect(() => {}, [updatedProperty]);
 
   return (
     <section id="modal-backdrop">
-      <div className="bg-white w-[800px] h-auto rounded p-4">
+      {loading && <span>Cargando....</span>}
+      <div className="bg-white w-[350px] md:w-[800px] h-auto rounded p-4">
         <div className="flex flex-row justify-between items-center">
-          <span className="text-2xl font-bold">Crear nueva propiedad</span>
+          <span className="text-2xl font-bold">Editar propiedad</span>
           <button onClick={onClose}>
             <IoIosCloseCircle className="text-red" size={32} />
           </button>
@@ -129,6 +140,22 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
                   <ErrorMessage
                     className="text-red font-bold"
                     name="title"
+                    component="div"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="font-bold" htmlFor="description">
+                    Descripcion
+                  </label>
+                  <Field
+                    className="shadow-xl text-grayCards"
+                    type="text"
+                    name="description"
+                  />
+                  <ErrorMessage
+                    className="text-red font-bold"
+                    name="description"
                     component="div"
                   />
                 </div>
@@ -210,7 +237,7 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Enviando..." : "Crear Propiedad"}
+                  {isSubmitting ? "Enviando..." : "Editar propiedad"}
                 </button>
               </Form>
             )}
@@ -223,4 +250,4 @@ const CreatePropertyForm: React.FC<Props> = ({ onClose }) => {
   );
 };
 
-export default CreatePropertyForm;
+export default UpdatePropertyForm;
