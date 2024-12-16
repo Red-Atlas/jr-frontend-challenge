@@ -7,7 +7,7 @@ import colombiaFlag from "../assets/colombia.png";
 import mexicoFlag from "../assets/mexico.png";
 import puertoRicoFlag from "../assets/puertorico.png";
 import uaeFlag from "../assets/emiratosarabes.png";
-import atlasProf from "../assets/atlasProf.png";
+import atlasProf from "../assets/atlasprof.png";
 import logoanimated from "../assets/logoanimated.gif";
 
 const flags = {
