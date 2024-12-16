@@ -52,8 +52,12 @@ Cree las vistas para agregar, editar y eliminar propiedades. Agregue formularios
 
 Diseños y estilos para que se adapten a todos los dispositivos.
 
+### Favoritos
+
+Agregue un listado de favoritos para que los usuarios puedan guardar sus propiedades favoritas. Para esto agregue un listado de favoritos en el estado global y una función para agregar y eliminar propiedades de este listado.
 
 ### Demo en Vercel en vivo:
 
 https://augustovidal-redatlas.vercel.app/
+
 
