@@ -40,7 +40,7 @@
 
 6. **Accede al deploy:**
 
-Abre tu navegador y ve a `https://red-challenge-git-nehuen-lopez-jableed43s-projects.vercel.app/` 
+Abre tu navegador y ve a `https://red-challenge-blush.vercel.app/` 
 
 ---
 
