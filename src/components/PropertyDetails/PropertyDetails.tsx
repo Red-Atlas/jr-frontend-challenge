@@ -89,9 +89,7 @@ export default function PropertyDetails() {
           <h1 className="text-2xl md:text-3xl font-bold mb-4">{property.title}</h1>
           <p className="text-base md:text-lg text-gray-600 mb-4">
             <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                property.address
-              )}`}
+              href={`https://www.google.com/maps/search/?api=1&query=${property.location.lat},${property.location.lng}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-500 hover:underline"
