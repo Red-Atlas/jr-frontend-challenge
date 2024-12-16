@@ -1,131 +1,41 @@
 # Front-End Challenge - Junior 🚀
 
-## Descripción
+Para iniciar la aplcacion debemos movernos hay que seguir estos simples 4 pasos
 
-El objetivo de este desafío es crear una aplicación sencilla para listar propiedades inmobiliarias. Este reto evaluará tus habilidades para consumir APIs, manejar estado, implementar diseño responsivo y trabajar con rutas.
+```git checkout tomas-dopazo```
 
-¡Confía en tu talento y diviértete mientras lo haces! 🌟
 
----
+``` cd challengeatlas```
 
-## Requisitos Técnicos
 
-- **Framework**: React + TypeScript.
-- **Estilos**: Tecnología a libre elección. Puedes usar frameworks o bibliotecas como:
+```npm install```
 
-  - CSS puro o preprocesadores como SASS o LESS.
-  - CSS-in-JS (por ejemplo, Styled Components, Emotion).
-  - Frameworks de diseño (por ejemplo, Tailwind CSS, Material-UI, Chakra UI).
-  - Bootstrap o cualquier sistema de diseño que prefieras.
 
-  Valoramos si el diseño se adapta al estilo de Red Atlas (https://atlas.red/).
+```npm run dev```
 
-- **Diseño Responsive**: Debe adaptarse correctamente a dispositivos móviles, tablets y desktops.
-- **Estado**: Manejo local con `useState` y `useEffect`
-- **Enrutamiento**: Implementar las rutas que consideres necesarias para los requisitos del proyecto.
+Se abrira en el puerto : http://localhost:5173/
 
-## Requisitos del Proyecto
+El enlace del proyecto despegado es :
+ "https://redatlas.vercel.app/"
 
-1. **Pantalla de Listado de Propiedades**:
+## Enfoque 💡
 
-   - Mostrar una lista de propiedades con:
-     - Título.
-     - Imagen.
-     - Dirección.
-     - Tipo de propiedad (`Apartment`, `House`, etc.).
-     - Precio.
-     - Estado (`En venta`, `En alquiler`).
-     - Disponibilidad (`Activo`, `Inactivo`).
-     - Area
-     - Fecha de publicación
-   - Funcionalidades:
-     - **Búsqueda**: Filtrar propiedades por titulo o dirección.
-     - **Ordenar por precio** (ascendente/descendente).
-     - **Paginación**: Mostrar un número limitado de propiedades por página.
+Decidí utilizar Bootstrap debido a su excelente capacidad para diseño responsive, lo que garantiza que la aplicación se adapte correctamente a diferentes dispositivos y tamaños de pantalla. 
 
-2. **Vista de Detalle de Propiedad**:
+Opté por React-Leaflet para los mapas, ya que es una biblioteca gratuita que cumple perfectamente con los requisitos de la aplicación.
 
-   - Al hacer click en una propiedad, abrir una pantalla que muestre todos los datos de la propiedad.
-   - Incluir botón para regresar al listado.
+Para gestionar el enrutado, implementé React Router, que facilita la navegación entre las distintas vistas
 
-3. **Formulario de Creación/Edición de Propiedades**:
-   - Permitir crear una nueva propiedad o editar una existente.
+Utilicé UUID para generar identificadores únicos de manera eficiente
 
-## Extras Opcionales ✨
+La implementacion de estados locales con useStatte useEffect para los efectos de los componentes y la api,
 
-- Agregar validaciones para campos obligatorios como título, dirección, precio y tipo.
-- Agregar filtros avanzados.
-- Mostrar mensajes de error claros y accesibles.
-- Implementar un mapa interactivo para localizar las propiedades utilizando cualquier librería de mapas (_Mapbox_, _Google Maps_, etc).
+Tambien decidi la validacion de los campos con boostrap, en lo que le da al agregar una propiedad una forma muy dinamica de los cambios en los campos y si arroja un error 
 
-## API Fake
 
-La API estará disponible en:
+## Desafio
+El desafio mas grande fue la implementacion del mapa y que al buscarlo con pais, ciudad, calle y numero se me indique la lat y long, ya que el usuario no tendria que estar poniendo estos paramentros de lat y long.
 
-- **Base URL**: https://fake-api-listings.vercel.app/api-docs/
-- **Endpoints**:
-  - `GET /properties`: Lista de propiedades.
-  - `GET /properties/:id`: Detalles de una propiedad.
-  - `POST /properties`: Crear una propiedad.
-  - `PUT /properties/:id`: Editar una propiedad.
-  - `DELETE /properties/:id`: Eliminar una propiedad.
+## Desciciones
+Hubiera sido ideal que la API incluyera un parámetro de búsqueda, lo que habría simplificado la elección entre usar el JSON o la propia API. Sin embargo, finalmente opté por utilizar la API, ya que consideré que era la opción más adecuada para los requerimientos de este proyecto.
 
-**Nota:**
-
-Esta API es pública y compartida entre todos los candidatos. Para evitar problemas, realiza cambios solo en las propiedades que tú mismo crees. **Si deseas usar tu propia API, ¡será valorado!**
-
-En caso de que la API tenga problemas, proporcionamos un archivo JSON con datos de ejemplo que puedes utilizar localmente. Este archivo incluye un conjunto básico de propiedades para ayudarte a cumplir con los requisitos del proyecto.
-El archivo se encuentra disponible en este repositorio bajo el nombre `properties.json`.
-
-**Ejemplo de propiedad:**
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426614174000",
-  "title": "Moderna Casa Familiar",
-  "address": "Calle Secundaria 456",
-  "description": "Amplia y luminosa casa ideal para familias...",
-  "location": {
-    "lat": -34.6037,
-    "lng": -58.3816
-  },
-  "images": ["https://via.placeholder.com/150"],
-  "type": "house",
-  "status": "sale",
-  "isActive": true,
-  "price": 120000,
-  "area": 250,
-  "createdAt": "2024-05-15T10:00:00.000Z",
-  "updatedAt": "2024-11-20T15:45:00.000Z",
-  "owner": {
-    "name": "John Doe",
-    "contact": "johndoe@example.com"
-  }
-}
-```
-
-## Instrucciones de Entrega
-
-- Realiza un fork de este repositorio: `Red-Atlas/jr-frontend-challenge`.
-- Crea un branch con tu nombre completo en el formato: nombre-apellido.
-- Sube tu código al branch correspondiente.
-- Desplegar la aplicación en un servicio gratuito como **Vercel** o **Netlify**.
-
-- Incluye en el README del fork:
-  - instrucciones en el `README.md` para instalar y ejecutar la aplicación.
-  - El enlace al proyecto desplegado.
-  - Un resumen de tu solución (enfoque, desafíos, decisiones técnicas).
-  - Realiza un pull request a este repositorio.
-
-## Criterios de Evaluación
-
-1. **Funcionalidad**: Cumplimiento de los requisitos principales.
-2. **Código**: Limpieza, modularidad y buenas prácticas.
-3. **Diseño**: Interfaz funcional y clara.
-4. **Extras Opcionales**: Implementación correcta si decides incluirlos.
-
----
-
-### 🚀 ¡Buena suerte!
-
-Si tienes dudas, no dudes en preguntar. 😊
