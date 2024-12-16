@@ -37,6 +37,11 @@
 
    Abre tu navegador y ve a `http://localhost:5173/` para ver la aplicación en acción. ¡Listo! 🎉
 
+
+6. **Accede al deploy:**
+
+Abre tu navegador y ve a `https://red-challenge-git-nehuen-lopez-jableed43s-projects.vercel.app/` 
+
 ---
 
 ## 🧠 Resumen del Enfoque, Desafíos y Decisiones Técnicas
