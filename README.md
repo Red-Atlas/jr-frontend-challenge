@@ -1,131 +1,44 @@
-# Front-End Challenge - Junior 🚀
+# Challenge Red Atlas
 
-## Descripción
+Este proyecto es una aplicación construida con **React**, **Vite** y **TypeScript**, que incluye **TailwindCSS** y **Mapbox** para mapas interactivos. El objetivo es mostrar una solución simple y eficiente que pueda desplegarse fácilmente.
 
-El objetivo de este desafío es crear una aplicación sencilla para listar propiedades inmobiliarias. Este reto evaluará tus habilidades para consumir APIs, manejar estado, implementar diseño responsivo y trabajar con rutas.
+## 🛠️ Instalación y configuración local
 
-¡Confía en tu talento y diviértete mientras lo haces! 🌟
+Sigue estos pasos para instalar y ejecutar la aplicación en tu entorno local:
 
----
+1. Clonar el repositorio
 
-## Requisitos Técnicos
+2. Instalar dependencias
 
-- **Framework**: React + TypeScript.
-- **Estilos**: Tecnología a libre elección. Puedes usar frameworks o bibliotecas como:
+npm install
 
-  - CSS puro o preprocesadores como SASS o LESS.
-  - CSS-in-JS (por ejemplo, Styled Components, Emotion).
-  - Frameworks de diseño (por ejemplo, Tailwind CSS, Material-UI, Chakra UI).
-  - Bootstrap o cualquier sistema de diseño que prefieras.
+3. Configurar variables de entorno
+4. 
+Crea un archivo .env en la raíz del proyecto y agrega las siguientes claves, para facilidad de uds les facilite unas aca:
 
-  Valoramos si el diseño se adapta al estilo de Red Atlas (https://atlas.red/).
+VITE_MAPBOX_TOKEN=pk.eyJ1IjoibHVjYXNjYWx2ZXR0aSIsImEiOiJja3lzYjFqbjAwMjZ2MnhwZHIxajNlMmo1In0.4HJSt33L3PDqtBmx5EopMQ
+VITE_IMGBB_API_KEY=70b8122d49a7b2381e171d65038b91cd
 
-- **Diseño Responsive**: Debe adaptarse correctamente a dispositivos móviles, tablets y desktops.
-- **Estado**: Manejo local con `useState` y `useEffect`
-- **Enrutamiento**: Implementar las rutas que consideres necesarias para los requisitos del proyecto.
+4. Ejecutar el servidor de desarrollo
+Inicia el servidor local con el siguiente comando:
 
-## Requisitos del Proyecto
+npm run dev
 
-1. **Pantalla de Listado de Propiedades**:
+La aplicación estará disponible en http://localhost:5173.
 
-   - Mostrar una lista de propiedades con:
-     - Título.
-     - Imagen.
-     - Dirección.
-     - Tipo de propiedad (`Apartment`, `House`, etc.).
-     - Precio.
-     - Estado (`En venta`, `En alquiler`).
-     - Disponibilidad (`Activo`, `Inactivo`).
-     - Area
-     - Fecha de publicación
-   - Funcionalidades:
-     - **Búsqueda**: Filtrar propiedades por titulo o dirección.
-     - **Ordenar por precio** (ascendente/descendente).
-     - **Paginación**: Mostrar un número limitado de propiedades por página.
 
-2. **Vista de Detalle de Propiedad**:
+## Link de produccion:
 
-   - Al hacer click en una propiedad, abrir una pantalla que muestre todos los datos de la propiedad.
-   - Incluir botón para regresar al listado.
+https://vercel.com/lucascalvettis-projects/challenge-red-atlas
 
-3. **Formulario de Creación/Edición de Propiedades**:
-   - Permitir crear una nueva propiedad o editar una existente.
+## Resumen:
 
-## Extras Opcionales ✨
+Al inicio del desarrollo, enfrenté dificultades para acceder a los datos de la API directamente desde el navegador, probablemente debido a restricciones de CORS. Una vez resuelto este inconveniente, evalué la posibilidad de crear mi propia API para gestionar las búsquedas de propiedades de manera más eficiente. Mi idea era consultar toda la información desde el backend y aplicar los filtros necesarios en esa capa.
 
-- Agregar validaciones para campos obligatorios como título, dirección, precio y tipo.
-- Agregar filtros avanzados.
-- Mostrar mensajes de error claros y accesibles.
-- Implementar un mapa interactivo para localizar las propiedades utilizando cualquier librería de mapas (_Mapbox_, _Google Maps_, etc).
+Sin embargo, debido a las limitaciones de tiempo y con el objetivo de tener la aplicación lista para el domingo, tomé la decisión de traer todos los datos al frontend y aplicar los filtros directamente desde allí. Soy consciente de que esta no es la mejor solución desde el punto de vista de rendimiento y escalabilidad, pero en este contexto me pareció la opción más rápida y práctica.
 
-## API Fake
+Durante el desarrollo, se me ocurrieron varias ideas interesantes que, por cuestiones de tiempo, no pude implementar. Por ejemplo, agregar una funcionalidad que permita encontrar propiedades dentro de un rango específico de kilómetros utilizando la geolocalización del usuario. Es una característica que ya implementé previamente en una aplicación para mascotas perdidas que desarrollé, y con herramientas como Algolia habría sido relativamente sencillo integrarla.
 
-La API estará disponible en:
+A pesar de los desafíos, el proceso fue muy enriquecedor y disfruté mucho del reto. Espero tener la oportunidad de participar en la entrevista presencial, donde podré brindar más detalles sobre mis decisiones técnicas, el enfoque utilizado y las soluciones que contemplé durante el desarrollo.
 
-- **Base URL**: https://fake-api-listings.vercel.app/api-docs/
-- **Endpoints**:
-  - `GET /properties`: Lista de propiedades.
-  - `GET /properties/:id`: Detalles de una propiedad.
-  - `POST /properties`: Crear una propiedad.
-  - `PUT /properties/:id`: Editar una propiedad.
-  - `DELETE /properties/:id`: Eliminar una propiedad.
 
-**Nota:**
-
-Esta API es pública y compartida entre todos los candidatos. Para evitar problemas, realiza cambios solo en las propiedades que tú mismo crees. **Si deseas usar tu propia API, ¡será valorado!**
-
-En caso de que la API tenga problemas, proporcionamos un archivo JSON con datos de ejemplo que puedes utilizar localmente. Este archivo incluye un conjunto básico de propiedades para ayudarte a cumplir con los requisitos del proyecto.
-El archivo se encuentra disponible en este repositorio bajo el nombre `properties.json`.
-
-**Ejemplo de propiedad:**
-
-```json
-{
-  "id": "123e4567-e89b-12d3-a456-426614174000",
-  "title": "Moderna Casa Familiar",
-  "address": "Calle Secundaria 456",
-  "description": "Amplia y luminosa casa ideal para familias...",
-  "location": {
-    "lat": -34.6037,
-    "lng": -58.3816
-  },
-  "images": ["https://via.placeholder.com/150"],
-  "type": "house",
-  "status": "sale",
-  "isActive": true,
-  "price": 120000,
-  "area": 250,
-  "createdAt": "2024-05-15T10:00:00.000Z",
-  "updatedAt": "2024-11-20T15:45:00.000Z",
-  "owner": {
-    "name": "John Doe",
-    "contact": "johndoe@example.com"
-  }
-}
-```
-
-## Instrucciones de Entrega
-
-- Realiza un fork de este repositorio: `Red-Atlas/jr-frontend-challenge`.
-- Crea un branch con tu nombre completo en el formato: nombre-apellido.
-- Sube tu código al branch correspondiente.
-- Desplegar la aplicación en un servicio gratuito como **Vercel** o **Netlify**.
-
-- Incluye en el README del fork:
-  - instrucciones en el `README.md` para instalar y ejecutar la aplicación.
-  - El enlace al proyecto desplegado.
-  - Un resumen de tu solución (enfoque, desafíos, decisiones técnicas).
-  - Realiza un pull request a este repositorio.
-
-## Criterios de Evaluación
-
-1. **Funcionalidad**: Cumplimiento de los requisitos principales.
-2. **Código**: Limpieza, modularidad y buenas prácticas.
-3. **Diseño**: Interfaz funcional y clara.
-4. **Extras Opcionales**: Implementación correcta si decides incluirlos.
-
----
-
-### 🚀 ¡Buena suerte!
-
-Si tienes dudas, no dudes en preguntar. 😊
