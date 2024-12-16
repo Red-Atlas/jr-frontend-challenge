@@ -8,7 +8,7 @@ export function useFetchPropertyById(id: string) {
     useEffect(() => {
         const fetchProperty = async (): Promise<void> => {
             try {
-                const response = await fetch(`/api/properties/${id}`);
+                const response = await fetch(`https://fake-api-listings.vercel.app/properties/${id}`);
                 if (response.ok) {
                     const res: Property = await response.json();
                     setProperty(res);

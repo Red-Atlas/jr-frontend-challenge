@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { EditProperty } from "../types";
 
-const baseUrl = "/api/properties";
+const baseUrl = "https://fake-api-listings.vercel.app/properties";
 
 export function useEditProperty() {
   const [loading, setLoading] = useState(false);

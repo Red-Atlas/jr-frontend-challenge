@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-const countUrl = '/api/properties/count';
+const countUrl = 'https://fake-api-listings.vercel.app/properties/count';
 
 export function useFetchPropertyCount() {
     const [count, setCount] = useState<number | null>(null);

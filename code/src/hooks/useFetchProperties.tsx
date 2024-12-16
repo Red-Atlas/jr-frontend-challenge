@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { Property } from "../types";
 
-const baseUrl = "/api/properties";
+const baseUrl = "https://fake-api-listings.vercel.app/properties";
 
 export function useFetchProperties(currentPage: number, resultsPerPage: number) {
     const [data, setData] = useState<Property[] | null>(null);

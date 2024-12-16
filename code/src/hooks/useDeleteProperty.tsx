@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const baseUrl = "/api/properties";
+const baseUrl = "https://fake-api-listings.vercel.app/properties";
 
 export function useDeleteProperty() {
   const [loading, setLoading] = useState(false);
