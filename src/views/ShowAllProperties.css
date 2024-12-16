@@ -1,0 +1,28 @@
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  padding-right: 20px;
+}
+
+.card-container {
+  height: 700px;  
+  overflow-y: auto;  
+  background-color: white;
+  margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    height: 700px;  
+    overflow-y: auto;  
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 350px;
+    margin: auto;
+    overflow-x: hidden;
+    margin-top: 50px;
+   
+  }
+}
