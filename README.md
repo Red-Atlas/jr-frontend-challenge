@@ -27,24 +27,36 @@
   Esto abrirá el navegador en http://localhost:5173.
 
 
-Tecnologías Usadas
-Frameworks y Lenguajes:
+## Tecnologías Usadas
 
-  React
-  TypeScript
-  Vite
+### Frameworks y Lenguajes
 
-Estilos:
+React: Para crear interfaces de usuario dinámicas y componentes reutilizables.
 
-  TailwindCSS
+TypeScript: Para garantizar tipado estático y prevenir errores en tiempo de desarrollo.
 
-APIs:
+Vite: Por su velocidad superior en el proceso de desarrollo gracias a su enfoque de bundling moderno y tiempos de arranque más rápidos en comparación con alternativas como Create React App.
 
-  Google Maps API (para mapa interactivo).
-  Fake API Listings (con proxy configurado en vite.config.ts para usar en local si hay problemas de CORS).
+### Estilos
+
+TailwindCSS: Una herramienta de utilidad para estilos que permite crear diseños consistentes de forma rápida.
+
+### APIs
+
+Google Maps API: Para integrar un mapa interactivo en las vistas de las propiedades.
+
+Fake API Listings: Simula datos de propiedades usando una API ficticia. Se configuró un proxy en vite.config.ts para manejar problemas de CORS durante el desarrollo local.
+
+### Diseño de UX
+
+El diseño se centró en ofrecer una experiencia intuitiva y fluida, minimizando los pasos necesarios para realizar tareas clave. Se priorizaron las siguientes funcionalidades:
+
+Vistas para agregar, editar y eliminar propiedades: Proveen formularios claros con validación para evitar errores de usuario.
+
+Interfaz moderna y receptiva: Optimizada para dispositivos móviles y de escritorio, asegurando accesibilidad.
 
 
+### Demo en Vercel en vivo:
 
-Demo en Vercel en vivo:
+https://augustovidal-redatlas.vercel.app?_vercel_share=Z31Kxf2MYfkvUSKcvhg3NgUcBJU13Fkq
 
-https://jr-frontend-challenge-sepia.vercel.app/
