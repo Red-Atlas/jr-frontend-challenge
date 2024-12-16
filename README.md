@@ -27,7 +27,6 @@
   Esto abrirá el navegador en http://localhost:5173.
 
 
-
 Tecnologías Usadas
 Frameworks y Lenguajes:
 
@@ -43,6 +42,8 @@ APIs:
 
   Google Maps API (para mapa interactivo).
   Fake API Listings (con proxy configurado en vite.config.ts para usar en local si hay problemas de CORS).
+
+
 
 Demo en Vercel en vivo:
 
