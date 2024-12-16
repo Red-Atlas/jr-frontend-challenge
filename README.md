@@ -58,5 +58,5 @@ Interfaz moderna y receptiva: Optimizada para dispositivos móviles y de escrito
 
 ### Demo en Vercel en vivo:
 
-https://augustovidal-redatlas.vercel.app?_vercel_share=Z31Kxf2MYfkvUSKcvhg3NgUcBJU13Fkq
+https://augustovidal-redatlas.vercel.app/
 
