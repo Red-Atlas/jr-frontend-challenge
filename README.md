@@ -1,1 +1,21 @@
-https://preview.themeforest.net/item/homzen-real-estate-react-nextjs-template/full_screen_preview/52339263?_ga=2.57656426.1720352230.1733954331-1543059264.1719583045
+Prueba Técnica Frontend JR | Red Atlas
+
+Buenas, dejo un breve resumen de mi implementación aqui.
+Tecnologías empleadas:
+-React
+-Typescript
+-Vite
+-TailwindCSS
+-React-toastify
+-Fetch
+-React-router-dom
+
+La idea fue implementar lo más cercano posible el diseño original de atlas, obviamente
+dándole mi impronta, espero que les guste!
+
+Instrucciones :
+npm run dev : levantar el proyecto
+npm run build : generar distribución de producción
+
+Deploy
+https://red-atlas.netlify.app/
