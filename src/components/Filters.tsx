@@ -50,7 +50,6 @@ export function Filters({ handleSort, handleStatusFilter, searchParams }: Filter
 
     return (
         <div className="mt-4 relative">
-            {/* Filters for large screens */}
             <div className="hidden lg:flex flex-row justify-end mb-4 gap-2">
                 {buttonsConfig.map((button, index) => (
                     <Button key={index} variant="quaternary" onClick={button.onClick} className={`${button.className}`}>
@@ -59,8 +58,6 @@ export function Filters({ handleSort, handleStatusFilter, searchParams }: Filter
                     </Button>
                 ))}
             </div>
-
-            {/* Filters for small screens */}
             <div className="ml-6 lg:hidden">
                 <Button variant="quaternary" onClick={() => setMobileFiltersOpen(!isMobileFiltersOpen)}>
                     Filtros

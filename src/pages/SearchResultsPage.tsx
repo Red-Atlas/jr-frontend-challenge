@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { Property, SearchParams } from "../types/index";
 import { ContentManager } from "../components/ContentManager";
@@ -7,7 +7,7 @@ import { Search } from "../components/Search";
 import { H1 } from "../ui/Text";
 
 export function SearchResultsPage() {
-    const [properties, setProperties] = useState<Property[]>([]);
+    const [allProperties, setAllProperties] = useState<Property[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const location = useLocation();
@@ -26,7 +26,7 @@ export function SearchResultsPage() {
         setLoading(true);
         try {
             const propertiesData = await getAllProperties();
-            setProperties(propertiesData);
+            setAllProperties(propertiesData);
             const total = await getCountTotalProperties();
             setTotalProperties(total);
         } catch (err) {
@@ -38,7 +38,57 @@ export function SearchResultsPage() {
 
     useEffect(() => {
         fetchData();
+    }, []);
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        setSearchParams({
+            term: queryParams.get("search") ?? "",
+            filter: queryParams.get("filter") ?? "Sin filtro",
+            sortBy: (queryParams.get("sortBy") as SearchParams["sortBy"]) ?? undefined,
+            status: (queryParams.get("status") as SearchParams["status"]) ?? undefined,
+        });
+        setPage(parseInt(queryParams.get("page") ?? "1"));
     }, [location.search]);
+
+    const filteredProperties = useMemo(() => {
+        let result = allProperties;
+
+        if (searchParams.term) {
+            result = result.filter((property) => {
+                if (searchParams.filter === "Título") {
+                    return property.title.toLowerCase().includes(searchParams.term.toLowerCase());
+                } else if (searchParams.filter === "Dirección") {
+                    return property.address.toLowerCase().includes(searchParams.term.toLowerCase());
+                } else {
+                    return property.title.toLowerCase().includes(searchParams.term.toLowerCase()) || property.address.toLowerCase().includes(searchParams.term.toLowerCase());
+                }
+            });
+        }
+
+        if (searchParams.status) {
+            result = result.filter((property) => property.status === searchParams.status);
+        }
+
+        if (searchParams.sortBy) {
+            result.sort((a, b) => {
+                switch (searchParams.sortBy) {
+                    case "price_asc":
+                        return a.price - b.price;
+                    case "price_desc":
+                        return b.price - a.price;
+                    case "date_asc":
+                        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
+                    case "date_desc":
+                        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                    default:
+                        return 0;
+                }
+            });
+        }
+
+        return result;
+    }, [allProperties, searchParams]);
 
     const handleSearch = (newSearchParams: SearchParams) => {
         const params = new URLSearchParams();
@@ -57,7 +107,7 @@ export function SearchResultsPage() {
             <H1 className="text-red-500 text-center my-14">Resultados de búsqueda</H1>
             <Search searchParams={searchParams} onSearch={handleSearch} />
             <ContentManager
-                properties={properties}
+                properties={filteredProperties}
                 loading={loading}
                 error={error}
                 page={page}

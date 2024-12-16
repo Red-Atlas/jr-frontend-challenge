@@ -1,5 +1,4 @@
-import { useState, FormEvent, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState, FormEvent } from "react";
 import { SearchInput } from "../ui/Input";
 import { Select } from "../ui/Select";
 import type { SearchParams } from "../types/index";
@@ -12,12 +11,6 @@ type SearchProps = {
 export function Search({ searchParams, onSearch }: SearchProps) {
     const options = ["Sin filtro", "Título", "Dirección"];
     const [localSearchParams, setLocalSearchParams] = useState(searchParams);
-    const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        setLocalSearchParams(searchParams);
-    }, [searchParams]);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,29 +21,12 @@ export function Search({ searchParams, onSearch }: SearchProps) {
         onSearch(localSearchParams);
     };
 
-    const updateURL = (params: SearchParams) => {
-        const searchParams = new URLSearchParams(location.search);
-        if (params.term) searchParams.set("search", params.term);
-        else searchParams.delete("search");
-        if (params.filter !== "Sin filtro") searchParams.set("filter", params.filter);
-        else searchParams.delete("filter");
-        if (params.sortBy) searchParams.set("sortBy", params.sortBy);
-        else searchParams.delete("sortBy");
-        if (params.status) searchParams.set("status", params.status);
-        else searchParams.delete("status");
-        navigate(`${location.pathname}?${searchParams.toString()}`);
-    };
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newParams = { ...localSearchParams, term: e.target.value };
-        setLocalSearchParams(newParams);
-        updateURL(newParams);
+        setLocalSearchParams((prev) => ({ ...prev, term: e.target.value }));
     };
 
     const handleSelectChange = (option: string) => {
-        const newParams = { ...localSearchParams, filter: option };
-        setLocalSearchParams(newParams);
-        updateURL(newParams);
+        setLocalSearchParams((prev) => ({ ...prev, filter: option }));
     };
 
     return (
