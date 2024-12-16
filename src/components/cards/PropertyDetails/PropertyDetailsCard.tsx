@@ -101,7 +101,7 @@ const PropertyDetailsCard: React.FC<Props> = ({ property, onClose }) => {
                   <IoLocation size={24} className="text-red" />
                   <span className="font-bold">Propietario</span>
                 </div>
-                <span className="text-gray">{property.owner.name}</span>
+                <span className="text-gray">{property.owner?.name}</span>
               </div>
 
               <div className="flex flex-col mt-6">
@@ -109,7 +109,7 @@ const PropertyDetailsCard: React.FC<Props> = ({ property, onClose }) => {
                   <IoLocation size={24} className="text-red" />
                   <span className="font-bold">Contacto</span>
                 </div>
-                <span className="text-gray">{property.owner.contact}</span>
+                <span className="text-gray">{property.owner?.contact}</span>
               </div>
             </div>
             <div className="flex items-center justify-center">
