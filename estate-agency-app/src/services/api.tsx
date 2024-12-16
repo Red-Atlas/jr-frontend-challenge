@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://fake-api-listings.vercel.app/api";
+const API_BASE_URL = "https://fake-api-listings.vercel.app";
 import axios from "axios";
 
 export const fetchProperties = async (page: number, limit: number) => {
