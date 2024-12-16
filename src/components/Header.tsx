@@ -26,7 +26,13 @@ export function Header() {
                 <div className="md:hidden">
                     <button onClick={toggleMenu} className="p-2 rounded-md text-black hover:text-black/40 transition-all duration-150">
                         {isMenuOpen ? (
-                            <span className="w-8 h-8 md:w-10 md:h-10 transition-all duration-150">❌</span>
+                            <span
+                                className="w-10
+                             h-10 text-2xl
+                             md:w-10 md:h-10 transition-all duration-150"
+                            >
+                                ❌
+                            </span>
                         ) : (
                             <HamburguerMenuIcon className="w-8 h-8 md:w-10 md:h-10 transition-all duration-150" />
                         )}
@@ -35,25 +41,41 @@ export function Header() {
                 <ul
                     className={`${
                         isMenuOpen ? "flex" : "hidden"
-                    } absolute md:right-0 top-16 md:top-2 right-1/2 md:left-auto transform -translate-x-1/2 md:translate-x-0 md:flex gap-3 md:gap-14 text-white items-center font-bold text-lg md:flex-row flex-col md:bg-transparent bg-black/80 md:p-0 p-6 rounded-lg md:w-auto w-full`}
+                    } absolute md:right-0 top-16 md:top-2 bg-[var(--bg-color)] right-1/2 md:left-auto transform translate-x-1/2 md:translate-x-0 md:flex gap-3 lg:gap-10 text-white items-center font-bold text-lg md:flex-row flex-col md:bg-transparent md:p-0 p-6 rounded-lg md:w-auto w-full`}
                 >
-                    <li className="hover:underline transition-all duration-300 scale-100 hover:scale-105">
+                    <li
+                        className={`hover:underline w-full ${
+                            isMenuOpen ? "hover:bg-gray-200 rounded-3xl" : ""
+                        } lg:w-auto text-center lg:text-start transition-all duration-300 scale-100 hover:scale-105`}
+                    >
                         <Link to="/" className="font-outline-1">
                             HOME
                         </Link>
                     </li>
-                    <li className="hover:underline transition-all duration-300 scale-100 hover:scale-105">
+                    <li
+                        className={`hover:underline w-full ${
+                            isMenuOpen ? "hover:bg-gray-200 rounded-3xl" : ""
+                        } lg:w-auto text-center lg:text-start transition-all duration-300 scale-100 hover:scale-105`}
+                    >
                         <Link to="/user/properties" className="font-outline-1">
                             MIS PROPIEDADES
                         </Link>
                     </li>
-                    <li className="hover:underline transition-all duration-300 scale-100 hover:scale-105">
+                    <li
+                        className={`hover:underline w-full ${
+                            isMenuOpen ? "hover:bg-gray-200 rounded-3xl" : ""
+                        } lg:w-auto text-center lg:text-start transition-all duration-300 scale-100 hover:scale-105`}
+                    >
                         <Link to="/user/properties/create" className="font-outline-1">
                             CREAR PROPIEDAD
                         </Link>
                     </li>
-                    <li className="hover:underline transition-all duration-300 scale-100 hover:scale-105">
-                        <Link to="/user/properties/favorites" target="_blank" className="font-outline-1">
+                    <li
+                        className={`hover:underline w-full ${
+                            isMenuOpen ? "hover:bg-gray-200 rounded-3xl" : ""
+                        } lg:w-auto text-center lg:text-start transition-all duration-300 scale-100 hover:scale-105`}
+                    >
+                        <Link to="/user/properties/favorites" className="font-outline-1">
                             FAVORITOS
                         </Link>
                     </li>

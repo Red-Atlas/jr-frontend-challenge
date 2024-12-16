@@ -25,8 +25,8 @@ export function ListedProperties({ paginatedProperties, handleSort, handleStatus
         <div style={{ animation: "reveal linear both", animationRange: "entry 10% cover 20%" }} className="flex flex-col gap-10 items-start">
             <Filters handleSort={handleSort} handleStatusFilter={handleStatusFilter} searchParams={searchParams} />
             <div className="flex flex-col gap-4 w-full">
-                {paginatedProperties.map((property) => (
-                    <PropertyCard key={property.id} property={property} isOwner={handleIsOwner(property)} />
+                {paginatedProperties.map((property, index) => (
+                    <PropertyCard key={property.id + index} property={property} isOwner={handleIsOwner(property)} />
                 ))}
             </div>
             <Pagination page={page} setPage={setPage as React.Dispatch<React.SetStateAction<number>>} totalProperties={totalProperties} loading={loading} />

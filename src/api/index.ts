@@ -16,32 +16,47 @@ ya que al fin y al cabo es un challenge de frontend termine haciendo de la prime
 */
 
 export async function getAllProperties() {
-    try {
-        const response = await fetch(`${baseUrl}?page=1&limit=10000`);
-        if (!response.ok) {
-            throw new Error(response.statusText + ": Error fetching properties");
-        }
+    let returnProperties: Property[] = [];
+    const properties = JSON.parse(localStorage.getItem("properties-from-localstorage") || "[]");
 
-        const properties = await response.json();
-        return properties;
-    } catch (err) {
-        console.error(err);
-        throw err;
+    if (properties.length > 0) {
+        returnProperties = properties;
+    } else {
+        try {
+            const response = await fetch(`${baseUrl}?page=1&limit=10000`);
+            if (!response.ok) {
+                console.warn(`API call failed with status: ${response.status}`);
+                return returnProperties;
+            }
+
+            const fetchedProperties = await response.json();
+            returnProperties = fetchedProperties;
+            localStorage.setItem("properties-from-localstorage", JSON.stringify(returnProperties));
+        } catch (err) {
+            console.warn("Error fetching properties from API:", err);
+            return returnProperties;
+        }
     }
+
+    return returnProperties;
 }
 
 export async function getCountTotalProperties(): Promise<number> {
+    let totalProperties = 0;
     try {
         const response = await fetch(`${baseUrl}/count`);
         if (!response.ok) {
-            throw new Error(response.statusText + ": Error fetching total properties count");
+            console.warn(`API call failed with status: ${response.status}`);
+            return totalProperties;
         }
         const total = await response.json();
-        return total.count;
+        totalProperties = total.count;
     } catch (err) {
-        console.error(err);
-        throw err;
+        console.warn("Error fetching total properties count:", err);
+        return totalProperties;
     }
+
+    return totalProperties;
 }
 
 export async function getPropertyById(id: string): Promise<Property> {
@@ -69,6 +84,7 @@ export async function getPropertyById(id: string): Promise<Property> {
 
     return returnProperty;
 }
+
 export async function createProperty(property: Property): Promise<Property> {
     try {
         const response = await fetch(baseUrl, {
@@ -119,8 +135,9 @@ export async function updateProperty(updatedProperty: Property): Promise<Propert
         localStorage.setItem("properties-from-localstorage", JSON.stringify(properties));
     }
 
+    let returnProperty = updatedProperty;
+
     try {
-        //I set it up this way because I know it will crash if the backend eliminated the property as it does frecuently
         const response = await fetch(`${baseUrl}/${updatedProperty.id}`, {
             method: "PUT",
             headers: {
@@ -131,8 +148,7 @@ export async function updateProperty(updatedProperty: Property): Promise<Propert
 
         if (!response.ok) {
             console.warn(`API update failed with status: ${response.status}`);
-
-            return updatedProperty;
+            return returnProperty;
         }
 
         const updatedPropertyFromAPI = await response.json();
@@ -142,9 +158,10 @@ export async function updateProperty(updatedProperty: Property): Promise<Propert
             localStorage.setItem("properties-from-localstorage", JSON.stringify(properties));
         }
 
-        return updatedPropertyFromAPI;
+        returnProperty = updatedPropertyFromAPI;
     } catch (err) {
         console.warn("Error updating property in API:", err);
-        return updatedProperty;
     }
+
+    return returnProperty;
 }

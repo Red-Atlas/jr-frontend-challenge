@@ -38,7 +38,17 @@ export function FavoritesPage() {
             setLoading(true);
             try {
                 const favoriteIds = propertyIdsFromLocalstorage();
-                const properties = await Promise.all(favoriteIds.map((id: string) => getPropertyById(id)));
+                const properties = [];
+
+                for (const id of favoriteIds) {
+                    try {
+                        const property = await getPropertyById(id);
+                        properties.push(property);
+                    } catch (err) {
+                        console.warn(`Error fetching property with id ${id}`, err);
+                    }
+                }
+
                 setFavoriteProperties(properties);
             } catch (err) {
                 setError("Error fetching favorite properties");

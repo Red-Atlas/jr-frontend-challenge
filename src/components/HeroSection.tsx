@@ -1,6 +1,7 @@
 import { Search } from "./Search";
 import type { SearchParams } from "../types";
 import { H1 } from "../ui/Text";
+import backgroundImage from "./../assets/images/home.jpeg";
 
 interface HeroSectionProps {
     searchParams: SearchParams;
@@ -13,8 +14,7 @@ export function HeroSection({ searchParams, onSearch }: HeroSectionProps) {
             <div
                 className="flex-grow relative bg-cover -top-16 h-full bg-center"
                 style={{
-                    backgroundImage:
-                        "url('https://img.freepik.com/foto-gratis/villa-lujo-piscina-espectacular-diseno-contemporaneo-arte-digital-bienes-raices-hogar-casa-propiedad-ge_1258-150749.jpg?t=st=1734273806~exp=1734277406~hmac=7ef44bc00905ce5f621e8a0868bb4aee9eb7e2aa1b4c39fb2829d6913964ea89&w=1380')",
+                    backgroundImage: `url(${backgroundImage})`,
                 }}
             >
                 <div className="absolute inset-0 bg-black/50" />
