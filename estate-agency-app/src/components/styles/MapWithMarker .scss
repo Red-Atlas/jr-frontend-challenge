@@ -1,0 +1,24 @@
+.map-container {
+  height: 400px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.map-container p {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+.google-map {
+  height: 100%;
+}
+
+.marker-info {
+  color: #333;
+  font-size: 16px;
+}
+
+.google-map .gm-style {
+  border-radius: 10px;
+}

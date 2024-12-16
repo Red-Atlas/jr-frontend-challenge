@@ -1,0 +1,45 @@
+.filters {
+  display: flex;
+  padding: 0.5rem;
+  gap: 10px;
+  justify-content: center;
+  $color1: #d31216;
+  $color2: #fff;
+  $color3: #999;
+  $color4: #333;
+
+  .filter-button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    color: $color4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $color1;
+      color: $color2;
+      border-color: $color1;
+    }
+
+    &:disabled {
+      background-color: $color2;
+      color: $color3;
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background-color: $color1;
+      color: $color2;
+      border-color: $color1;
+    }
+  }
+  @media (min-width: 768px) {
+    .filter-button {
+      padding: 10px 15px;
+      font-size: 16px;
+    }
+  }
+}

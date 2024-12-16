@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+
+  .logo-img {
+    width: 200px;
+    padding: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .logo-img {
+      width: 300px;
+      padding: 2rem;
+    }
+  }
+}
