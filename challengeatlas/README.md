@@ -15,7 +15,7 @@ Para iniciar la aplcacion debemos movernos hay que seguir estos simples 4 pasos
 
 Se abrira en el puerto : http://localhost:5173/
 
-El enlace del proyecto despegado es :
+El enlace del proyecto desplegado es :
  "https://redatlas.vercel.app/"
 
 ## Enfoque 💡
@@ -30,12 +30,16 @@ Utilicé UUID para generar identificadores únicos de manera eficiente
 
 La implementacion de estados locales con useStatte useEffect para los efectos de los componentes y la api,
 
-Tambien decidi la validacion de los campos con boostrap, en lo que le da al agregar una propiedad una forma muy dinamica de los cambios en los campos y si arroja un error 
-
+También decidí implementar la validación de los campos utilizando Bootstrap, lo que permite una manera muy dinámica de manejar los cambios en los campos. Además, si ocurre un error, se muestra de manera clara
 
 ## Desafio
 El desafio mas grande fue la implementacion del mapa y que al buscarlo con pais, ciudad, calle y numero se me indique la lat y long, ya que el usuario no tendria que estar poniendo estos paramentros de lat y long.
 
-## Desciciones
-Hubiera sido ideal que la API incluyera un parámetro de búsqueda, lo que habría simplificado la elección entre usar el JSON o la propia API. Sin embargo, finalmente opté por utilizar la API, ya que consideré que era la opción más adecuada para los requerimientos de este proyecto.
+## Decisiones
+En la documentación que provee el fake API, vemos que acepta como parámetros limit y page, lo cual mejora la eficiencia cuando se tiene que manejar grandes volúmenes de datos, ya que permite obtener X cantidad de items por cada página en la que el usuario navega,  pero al no tener como parámetro titulo o dirección limita al usuario a que solo pueda buscar entre, pongamos de ejemplo 10 items si el limit = 10.
 
+Por esto se tomo la decisión que no es la más eficiente para el sistema, ya que trae un volumen de 10000 items en una sola consulta en pos de permitirle al usuario ser más flexible con la búsqueda, al tener más items puede utilizar el input para filtrar por titulo o dirección.
+
+Para mejorar este punto creo que se podría agregar un parametro más al API, de manera tal que permite traer por páginas y limite, pero también por titulo, dirección o cualquier otro parámetro que se considere necesario.
+
+ 
