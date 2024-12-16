@@ -122,7 +122,7 @@ const CreatePropertyForm = ({ refetch }: { refetch: () => void }) => {
   };
 
   return (
-    <Box sx={{ maxWidth: "600px", margin: "0 auto", overflowY: "auto", maxHeight: "80vh" }}>
+    <Box sx={{ margin: "0 auto", overflowY: "auto", maxHeight: "80vh" }}>
       <Typography variant="h4" sx={{ textAlign: "center", marginBottom: 3 }}>
         Crear Nueva Propiedad
       </Typography>
