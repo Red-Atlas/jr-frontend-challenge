@@ -5,7 +5,7 @@ Para iniciar la aplcacion debemos movernos hay que seguir estos simples 4 pasos
 ```git checkout tomas-dopazo```
 
 
-``` cd challengeatlas```
+```cd challengeatlas```
 
 
 ```npm install```
@@ -16,7 +16,7 @@ Para iniciar la aplcacion debemos movernos hay que seguir estos simples 4 pasos
 Se abrira en el puerto : http://localhost:5173/
 
 El enlace del proyecto desplegado es :
- "https://redatlas.vercel.app/"
+ https://redatlas.vercel.app/
 
 ## Enfoque 💡
 
