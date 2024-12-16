@@ -26,7 +26,6 @@
 
   Esto abrirá el navegador en http://localhost:5173.
 
-
 ## Tecnologías Usadas
 
 ### Frameworks y Lenguajes
